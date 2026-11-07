@@ -540,7 +540,7 @@
     updateCountdown();
 
     // 3. Real-Time Quota Donor Darah Tracker (Apps Script API)
-    const DONOR_API_URL = 'https://script.google.com/macros/s/AKfycbxGWlsCYaYhGXLGZw1zwCjSEiVGdH9zzYPyXJIf61hfIZHoDf1aP_2YYiXMGxMvWk8/exec';
+    const DONOR_API_URL = 'https://script.google.com/macros/s/AKfycbxKy98sviHk3XBC6UAOpfd_5s2Oam1SHcOgLA-GicIFUXRTqVFBpPKHlrEarJefMEgDOg/exec';
     const DEFAULT_MAX_QUOTA = 150;
 
     async function fetchDonorQuota() {
@@ -555,9 +555,9 @@
         const res = await fetch(DONOR_API_URL);
         const data = await res.json();
 
-        if (data.status === 'success') {
-          const total = data.total_quota || DEFAULT_MAX_QUOTA;
-          const registered = Math.min(total, Math.max(0, data.registered || 0));
+        if (data && typeof data.registered !== 'undefined') {
+          const total = Number(data.total_quota) || DEFAULT_MAX_QUOTA;
+          const registered = Math.min(total, Math.max(0, Number(data.registered) || 0));
           const remaining = Math.max(0, total - registered);
           const percent = Math.min(100, Math.round((registered / total) * 100));
 
