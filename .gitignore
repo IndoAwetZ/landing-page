@@ -1,0 +1,12 @@
+# Arsip dan file sementara
+*.zip
+*.rar
+*.7z
+
+# Dokumen internal rapat
+*.pdf
+
+# File konfigurasi dan sistem
+AGENTS.md
+Thumbs.db
+.DS_Store
