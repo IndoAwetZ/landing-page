@@ -299,21 +299,49 @@
         <!-- Agenda 2: Donor Darah PMI -->
         <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
           <div>
-            <div class="inline-block px-3 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-lg mb-3">
-              Aksi Kemanusiaan
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="inline-block px-3 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-lg">
+                Aksi Kemanusiaan
+              </span>
+              <span id="donorBadgeStatus" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Pendaftaran Dibuka</span>
+              </span>
             </div>
+
             <h3 class="text-base font-bold text-slate-900">Donor Darah Bersama PMI</h3>
             <p class="text-slate-600 text-xs mt-2 leading-relaxed">
               Aksi donor darah bekerjasama dengan PMI Sidoarjo, mengundang partisipasi aktif cabang & ranting 'Aisyiyah/Muhammadiyah serta masyarakat umum.
             </p>
+
             <div class="mt-4 p-3 bg-red-50 rounded-xl border border-red-200/60 text-xs space-y-1 text-slate-700">
               <p><strong>Hari/Tanggal:</strong> Sabtu, 12 Des 2026</p>
               <p><strong>Waktu:</strong> 08.00 - 12.00 WIB</p>
               <p><strong>Lokasi:</strong> Mobil PMI di RSASF</p>
             </div>
+
+            <!-- Kuota Real-time Tracker -->
+            <div class="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-200/80">
+              <div class="flex justify-between items-center text-xs mb-1.5">
+                <span class="font-bold text-slate-700 flex items-center gap-1.5">
+                  <span class="text-sm">🩸</span> Kuota Peserta:
+                </span>
+                <span id="donorQuotaNumbers" class="font-bold text-slate-900">
+                  <span id="donorRegistered" class="text-rsBlue-600">--</span> / 150
+                </span>
+              </div>
+              <div class="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
+                <div id="donorProgressBar" class="bg-gradient-to-r from-rose-500 to-red-600 h-2 rounded-full transition-all duration-700" style="width: 0%"></div>
+              </div>
+              <div class="flex justify-between items-center text-[11px] text-slate-500 mt-2 font-medium">
+                <span>Sisa Kuota: <strong id="donorRemaining" class="text-emerald-700 font-bold">--</strong> slot</span>
+                <span id="donorSyncTime" class="text-[10px] text-slate-400">Sinkron otomatis</span>
+              </div>
+            </div>
           </div>
+
           <div class="mt-5 pt-3 border-t border-slate-100 flex flex-col gap-2">
-            <a href="https://forms.gle/pendaftaran-donor-darah-rsasf" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow-sm hover:shadow transition active:scale-95 flex items-center justify-center gap-1.5">
+            <a id="donorFormBtn" href="https://forms.gle/pendaftaran-donor-darah-rsasf" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow-sm hover:shadow transition active:scale-95 flex items-center justify-center gap-1.5">
               <span>🩸</span> <span>Buka Google Form Donor Darah ↗</span>
             </a>
             <span class="text-center text-[11px] text-slate-400">Pendaftaran resmi via Google Form</span>
@@ -510,6 +538,56 @@
     }
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    // 3. Real-Time Quota Donor Darah Tracker (Apps Script API)
+    const DONOR_API_URL = 'https://script.google.com/macros/s/AKfycbxGWlsCYaYhGXLGZw1zwCjSEiVGdH9zzYPyXJIf61hfIZHoDf1aP_2YYiXMGxMvWk8/exec';
+    const DEFAULT_MAX_QUOTA = 150;
+
+    async function fetchDonorQuota() {
+      const registeredEl = document.getElementById('donorRegistered');
+      const remainingEl = document.getElementById('donorRemaining');
+      const progressBar = document.getElementById('donorProgressBar');
+      const badgeStatus = document.getElementById('donorBadgeStatus');
+      const formBtn = document.getElementById('donorFormBtn');
+      const syncTimeEl = document.getElementById('donorSyncTime');
+
+      try {
+        const res = await fetch(DONOR_API_URL);
+        const data = await res.json();
+
+        if (data.status === 'success') {
+          const total = data.total_quota || DEFAULT_MAX_QUOTA;
+          const registered = Math.min(total, Math.max(0, data.registered || 0));
+          const remaining = Math.max(0, total - registered);
+          const percent = Math.min(100, Math.round((registered / total) * 100));
+
+          if (registeredEl) registeredEl.textContent = registered;
+          if (remainingEl) remainingEl.textContent = remaining;
+          if (progressBar) progressBar.style.width = percent + '%';
+          if (syncTimeEl) {
+            const now = new Date();
+            syncTimeEl.textContent = 'Update: ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+          }
+
+          if (data.is_full || remaining <= 0) {
+            if (badgeStatus) {
+              badgeStatus.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-rose-50 text-rose-700 border border-rose-200';
+              badgeStatus.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span><span>Kuota Penuh</span>';
+            }
+            if (formBtn) {
+              formBtn.className = 'w-full py-2.5 px-4 bg-slate-400 cursor-not-allowed text-white font-bold text-xs rounded-xl shadow-none flex items-center justify-center gap-1.5';
+              formBtn.innerHTML = '<span>🔒</span> <span>Pendaftaran Ditutup (Kuota Penuh)</span>';
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Live quota check deferred:', e);
+      }
+    }
+
+    fetchDonorQuota();
+    // Sinkronisasi otomatis setiap 60 detik jika user berada di landing page
+    setInterval(fetchDonorQuota, 60000);
   </script>
 </body>
 </html>
