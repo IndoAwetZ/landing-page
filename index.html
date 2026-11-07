@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b4fa8" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="alternate icon" href="favicon.svg" />
+  <title>Milad Ke-36 RSU 'Aisyiyah Siti Fatimah • Bersama untuk Pelayanan yang Lebih Baik</title>
+  
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            rsBlue: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#0057b8',
+              600: '#0b4fa8',
+              700: '#083e87',
+              800: '#063069',
+              900: '#04224c',
+            },
+            rsTeal: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#08786f',
+              600: '#06635c',
+              700: '#054e48',
+              800: '#043b37',
+              900: '#022c28',
+            },
+            rsGold: {
+              300: '#ffe082',
+              400: '#ffd66b',
+              500: '#f59e0b',
+              600: '#d97706',
+            }
+          },
+          fontFamily: {
+            sans: ['"Inter"', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'sans-serif'],
+            arabic: ['"Amiri"', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-official {
+      background: linear-gradient(135deg, #0b4fa8 0%, #08786f 100%);
+    }
+    .gradient-gold {
+      background: linear-gradient(135deg, #ffd66b 0%, #f59e0b 100%);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-rsBlue-600 selection:text-white">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-rsBlue-900 text-slate-200 text-xs py-2 px-4 border-b border-rsBlue-800/60 hidden sm:block">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <span>📍 Jl. Raya Kenongo No. 14, Tulangan, Sidoarjo</span>
+        <span>•</span>
+        <span>📞 Layanan RS: (031) 8851840 / WA: +62 812-3450-1005</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-rsTeal-500/30 text-rsGold-400 font-semibold border border-rsTeal-500/40">
+          ⭐ Terakreditasi LARSI Paripurna
+        </span>
+        <a href="https://rsasitifatimah.com" target="_blank" rel="noopener noreferrer" class="text-rsGold-400 hover:text-white transition font-medium">
+          Situs Resmi rsasitifatimah.com ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Nav -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo Horizontal Resmi -->
+      <a href="#" class="flex items-center group">
+        <img src="logo 36.jpeg" alt="Logo Milad Ke-36 RSU 'Aisyiyah Siti Fatimah" class="h-12 sm:h-14 w-auto object-contain transition group-hover:scale-102" />
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav class="hidden lg:flex items-center space-x-7 font-medium text-sm text-slate-600">
+        <a href="#tentang" class="hover:text-rsBlue-600 transition">Profil & Sejarah</a>
+        <a href="#agenda" class="hover:text-rsBlue-600 transition">Rangkaian Acara</a>
+        <a href="#puncak" class="hover:text-rsBlue-600 transition">Acara Puncak</a>
+        <a href="#doa" class="hover:text-rsBlue-600 transition">Papan Doa</a>
+      </nav>
+
+      <!-- CTA Button -->
+      <div class="hidden sm:flex items-center space-x-4">
+        <a href="#agenda" class="bg-rsBlue-600 hover:bg-rsBlue-700 text-white font-semibold px-5 py-2.5 rounded-xl shadow-md shadow-rsBlue-500/20 hover:shadow-lg transition text-sm">
+          Jadwal Kegiatan
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button id="mobileMenuBtn" aria-label="Buka Menu" class="lg:hidden p-2 rounded-xl text-slate-600 hover:text-rsBlue-600 hover:bg-slate-100 focus:outline-none">
+        <svg id="menuIconOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg id="menuIconClose" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-100 bg-white/98 backdrop-blur-md px-4 pt-3 pb-5 space-y-2 shadow-lg">
+      <a href="#tentang" class="mobile-nav-link block px-3 py-2 rounded-lg font-medium text-sm text-slate-700 hover:text-rsBlue-600 hover:bg-rsBlue-50 transition">Profil & Sejarah</a>
+      <a href="#agenda" class="mobile-nav-link block px-3 py-2 rounded-lg font-medium text-sm text-slate-700 hover:text-rsBlue-600 hover:bg-rsBlue-50 transition">Rangkaian Acara</a>
+      <a href="#puncak" class="mobile-nav-link block px-3 py-2 rounded-lg font-medium text-sm text-slate-700 hover:text-rsBlue-600 hover:bg-rsBlue-50 transition">Acara Puncak</a>
+      <a href="#doa" class="mobile-nav-link block px-3 py-2 rounded-lg font-medium text-sm text-slate-700 hover:text-rsBlue-600 hover:bg-rsBlue-50 transition">Papan Doa</a>
+      <div class="pt-2">
+        <a href="#agenda" class="mobile-nav-link block text-center w-full bg-rsBlue-600 hover:bg-rsBlue-700 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow">
+          Lihat Jadwal Milad
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative text-white py-16 sm:py-24 overflow-hidden gradient-official">
+    <div class="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-white/5 blur-3xl pointer-events-none"></div>
+    <div class="absolute -left-20 -bottom-20 w-96 h-96 rounded-full bg-rsGold-400/10 blur-3xl pointer-events-none"></div>
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffd66b_1px,transparent_1px)] [background-size:20px_20px]"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left Column: Hero Text & Countdown -->
+        <div class="lg:col-span-7 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-rsGold-300 text-xs sm:text-sm font-semibold mb-6">
+            ✨ Tema: "Bersama untuk Pelayanan yang Lebih Baik"
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight font-display">
+            Semarak Milad Ke-36<br/>
+            <span class="text-rsGold-400">RSU 'Aisyiyah Siti Fatimah</span>
+          </h1>
+          <p class="mt-4 text-base sm:text-lg text-blue-100 max-w-2xl font-light leading-relaxed">
+            Peringatan 36 tahun khidmat kesehatan Islami di Tulangan, Sidoarjo (1990 - 2026). Hadir dengan rangkaian Operasi Katarak AMCF-Perdami, Khitan Massal, Donor Darah, hingga Peresmian Gedung & Fasilitas Baru.
+          </p>
+
+          <!-- Countdown Box Menuju 20 Desember 2026 -->
+          <div class="mt-8 max-w-lg bg-white/10 border border-white/20 rounded-2xl p-5 backdrop-blur-md shadow-2xl">
+            <p class="text-xs uppercase tracking-wider font-bold text-rsGold-300 mb-3 flex items-center justify-center lg:justify-start gap-2">
+              <span>⏰</span> Menuju Hari Puncak Milad: Minggu, 20 Desember 2026
+            </p>
+            <div class="grid grid-cols-4 gap-2.5 text-center">
+              <div class="bg-white/10 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                <span id="days" class="block text-2xl sm:text-3xl font-extrabold text-white">00</span>
+                <span class="text-[11px] text-blue-200 font-medium">Hari</span>
+              </div>
+              <div class="bg-white/10 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                <span id="hours" class="block text-2xl sm:text-3xl font-extrabold text-white">00</span>
+                <span class="text-[11px] text-blue-200 font-medium">Jam</span>
+              </div>
+              <div class="bg-white/10 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                <span id="minutes" class="block text-2xl sm:text-3xl font-extrabold text-white">00</span>
+                <span class="text-[11px] text-blue-200 font-medium">Menit</span>
+              </div>
+              <div class="bg-white/10 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                <span id="seconds" class="block text-2xl sm:text-3xl font-extrabold text-white">00</span>
+                <span class="text-[11px] text-blue-200 font-medium">Detik</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
+            <a href="#agenda" class="gradient-gold hover:brightness-105 text-slate-900 font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition transform active:scale-95 text-sm">
+              Rangkaian Acara Lengkap
+            </a>
+            <a href="#puncak" class="bg-white/15 hover:bg-white/25 text-white font-semibold px-6 py-3 rounded-xl border border-white/30 backdrop-blur-md transition text-sm">
+              Acara Puncak & Peresmian
+            </a>
+            <a href="#doa" class="bg-rsTeal-800/80 hover:bg-rsTeal-700 text-white font-semibold px-6 py-3 rounded-xl border border-rsTeal-500/30 backdrop-blur-md transition text-sm">
+              Kirim Doa & Harapan
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Featured Square Logo Card -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative group">
+            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-rsGold-400 to-rsTeal-400 opacity-30 blur-xl group-hover:opacity-50 transition duration-500"></div>
+            <div class="relative bg-white p-4 sm:p-6 rounded-3xl shadow-2xl border border-white/20 max-w-sm">
+              <img src="logo 36 sqare.jpeg" alt="Logo Resmi Milad 36 RSU 'Aisyiyah Siti Fatimah" class="w-full h-auto rounded-2xl shadow-inner object-contain" />
+              <div class="mt-4 text-center">
+                <span class="inline-block px-3 py-1 bg-rsBlue-50 text-rsBlue-700 text-xs font-bold rounded-full">
+                  Logo Resmi Milad Ke-36 (1990 - 2026)
+                </span>
+                <p class="text-xs text-slate-500 mt-2 italic font-medium">
+                  "Bersama untuk Pelayanan yang Lebih Baik"
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Profil & Sambutan Direktur -->
+  <section id="tentang" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-rsBlue-600 font-bold uppercase tracking-wider text-xs">Perjalanan & Khidmat</span>
+          <h2 class="mt-2 text-3xl font-extrabold text-slate-900 leading-snug">
+            36 Tahun Mengabdi, Menghadirkan Kesembuhan Islami
+          </h2>
+          <p class="mt-4 text-slate-600 leading-relaxed text-sm sm:text-base">
+            Dimulai sejak 27 November 1990 sebagai balai pengobatan sederhana di Jl. Kenongo Tulangan oleh Ibu-ibu Pimpinan Daerah 'Aisyiyah Sidoarjo, kini <strong>RSU 'Aisyiyah Siti Fatimah</strong> terus berkembang menjadi rumah sakit terakreditasi paripurna yang mengintegrasikan kompetensi medis mutakhir dengan nilai-nilai dakwah Islam.
+          </p>
+
+          <!-- Key Metrics / Stats Resmi -->
+          <div class="mt-8 grid grid-cols-3 gap-4 border-t border-slate-100 pt-6">
+            <div>
+              <p class="text-3xl font-black text-rsBlue-600">36 Th</p>
+              <p class="text-xs text-slate-500 mt-1 font-medium">Khidmat Kesehatan</p>
+            </div>
+            <div>
+              <p class="text-3xl font-black text-rsTeal-600">LARSI</p>
+              <p class="text-xs text-slate-500 mt-1 font-medium">Akreditasi Paripurna</p>
+            </div>
+            <div>
+              <p class="text-3xl font-black text-rsBlue-600">24/7</p>
+              <p class="text-xs text-slate-500 mt-1 font-medium">Layanan Gawat Darurat</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sambutan Box Direktur -->
+        <div class="bg-gradient-to-br from-rsBlue-50 to-rsTeal-50 border border-rsBlue-100 rounded-3xl p-8 shadow-sm">
+          <blockquote class="text-slate-700 italic leading-relaxed text-sm sm:text-base">
+            "Rumah Sakit Aisyiyah Siti Fatimah merupakan perwujudan iman sebagai amal shaleh kepada Allah SWT, dijalankan sebagai sarana ibadah melalui pelayanan kesehatan yang profesional dan berlandaskan nilai-nilai Islam."
+          </blockquote>
+          <div class="mt-6 flex items-center gap-4">
+            <div class="w-14 h-14 rounded-full bg-rsBlue-600 text-white font-bold flex items-center justify-center text-xl shadow-md border-2 border-white">
+              👨‍⚕️
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-base">dr. M. Hud Suhargono, Sp.OG(K) Obsos</h4>
+              <p class="text-xs text-slate-500 font-medium">Direktur RSU 'Aisyiyah Siti Fatimah Tulangan</p>
+              <p class="text-[11px] text-rsTeal-600 font-semibold mt-0.5">Pimpinan Daerah 'Aisyiyah Sidoarjo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agenda Rangkaian Milad (Sesuai Notulen Rapat Resmi) -->
+  <section id="agenda" class="py-20 bg-slate-50 border-y border-slate-200/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-rsBlue-600 font-bold uppercase tracking-wider text-xs">Jadwal & Agenda Resmi</span>
+        <h2 class="mt-2 text-3xl font-extrabold text-slate-900">Rangkaian Kegiatan Milad Ke-36</h2>
+        <p class="mt-2 text-slate-600 text-sm">Disepakati dalam Rapat Persiapan Milad bersama jajaran pimpinan dan seksi kepanitiaan RSASF.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Agenda 1: Operasi & Skrining Katarak -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <div class="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-lg mb-3">
+              Baksos Utama
+            </div>
+            <h3 class="text-base font-bold text-slate-900">Operasi & Skrining Katarak Gratis</h3>
+            <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+              Bekerja sama dengan <strong>AMCF dan Perdami</strong>. Kuota 75 pasien operasi.
+            </p>
+            <div class="mt-4 p-3 bg-amber-50 rounded-xl border border-amber-200/60 text-xs space-y-1 text-slate-700">
+              <p><strong>Pendaftaran Ditutup:</strong> 15 Nov 2026</p>
+              <p><strong>Skrining (3 Hari):</strong> 20 Nov 2026</p>
+              <p><strong>Operasi:</strong> 28 Nov 2026 (08.00 WIB)</p>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 font-medium">
+            📍 Ruang OK, PKRS & Poli RSASF
+          </div>
+        </div>
+
+        <!-- Agenda 2: Donor Darah PMI -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <div class="inline-block px-3 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-lg mb-3">
+              Aksi Kemanusiaan
+            </div>
+            <h3 class="text-base font-bold text-slate-900">Donor Darah Bersama PMI</h3>
+            <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+              Aksi donor darah bekerjasama dengan PMI Sidoarjo, mengundang partisipasi aktif cabang & ranting 'Aisyiyah/Muhammadiyah serta masyarakat umum.
+            </p>
+            <div class="mt-4 p-3 bg-red-50 rounded-xl border border-red-200/60 text-xs space-y-1 text-slate-700">
+              <p><strong>Hari/Tanggal:</strong> Sabtu, 12 Des 2026</p>
+              <p><strong>Waktu:</strong> 08.00 - 12.00 WIB</p>
+              <p><strong>Lokasi:</strong> Mobil PMI di RSASF</p>
+            </div>
+          </div>
+          <div class="mt-5 pt-3 border-t border-slate-100 flex flex-col gap-2">
+            <a href="https://forms.gle/pendaftaran-donor-darah-rsasf" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow-sm hover:shadow transition active:scale-95 flex items-center justify-center gap-1.5">
+              <span>🩸</span> <span>Buka Google Form Donor Darah ↗</span>
+            </a>
+            <span class="text-center text-[11px] text-slate-400">Pendaftaran resmi via Google Form</span>
+          </div>
+        </div>
+
+        <!-- Agenda 3: Seminar Awam & Webinar SKP IDI -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <div class="inline-block px-3 py-1 bg-blue-100 text-rsBlue-700 text-xs font-bold rounded-lg mb-3">
+              Edukasi & Ilmiah
+            </div>
+            <h3 class="text-base font-bold text-slate-900">Seminar Awam & Webinar Medis</h3>
+            <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+              Seminar kesehatan untuk masyarakat awam dan ranting di aula, serta webinar ber-SKP bekerjasama dengan <strong>IDI</strong>.
+            </p>
+            <div class="mt-4 p-3 bg-blue-50 rounded-xl border border-blue-200/60 text-xs space-y-1 text-slate-700">
+              <p><strong>Tanggal:</strong> 12 Des 2026</p>
+              <p><strong>Format:</strong> Offline di Aula & Daring</p>
+              <p><strong>Akreditasi:</strong> SKP Kemenkes / IDI</p>
+            </div>
+          </div>
+          <div class="mt-5 pt-3 border-t border-slate-100 text-[11px] text-slate-500 font-medium text-center">
+            📍 Aula Nyai Siti Walidah RSASF
+          </div>
+        </div>
+
+        <!-- Agenda 4: Khitan Massal Ceria -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <div class="inline-block px-3 py-1 bg-rsTeal-100 text-rsTeal-700 text-xs font-bold rounded-lg mb-3">
+              Sosial Peduli
+            </div>
+            <h3 class="text-base font-bold text-slate-900">Khitan Massal Modern 75 Anak</h3>
+            <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+              Khitanan gratis bagi 75 anak yatim & dhuafa (25 kuota karyawan, 50 kuota ranting/warga). Syarat: PBI/KIS/SKTM.
+            </p>
+            <div class="mt-4 p-3 bg-rsTeal-50 rounded-xl border border-rsTeal-200/60 text-xs space-y-1 text-slate-700">
+              <p><strong>Pelaksanaan:</strong> Minggu, 20 Des 2026</p>
+              <p><strong>Target Kuota:</strong> 75 Anak Yatim/Dhuafa</p>
+              <p><strong>Fasilitas:</strong> Bingkisan, Sarung & Obat</p>
+            </div>
+          </div>
+          <div class="mt-5 pt-3 border-t border-slate-100 flex flex-col gap-2">
+            <a href="https://forms.gle/pendaftaran-khitan-massal-rsasf" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 bg-rsTeal-600 hover:bg-rsTeal-700 text-white font-bold text-xs rounded-xl shadow-sm hover:shadow transition active:scale-95 flex items-center justify-center gap-1.5">
+              <span>✂️</span> <span>Buka Google Form Khitan Massal ↗</span>
+            </a>
+            <span class="text-center text-[11px] text-slate-400">Pendaftaran resmi via Google Form</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Acara Puncak Milad Ke-36 (20 Desember 2026) -->
+  <section id="puncak" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="bg-gradient-to-br from-rsBlue-900 via-rsBlue-800 to-rsTeal-900 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
+        <div class="absolute right-0 top-0 -mt-10 -mr-10 w-72 h-72 bg-rsGold-400/10 rounded-full blur-2xl"></div>
+
+        <div class="relative max-w-3xl">
+          <span class="inline-block px-3.5 py-1 rounded-full bg-rsGold-400 text-slate-900 font-bold text-xs uppercase tracking-wider mb-4">
+            🌟 Agenda Utama Hari Puncak
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white leading-tight">
+            Puncak Milad Ke-36 & Peresmian Gedung Baru
+          </h2>
+          <p class="mt-3 text-blue-100 text-sm sm:text-base leading-relaxed">
+            Dilaksanakan pada <strong>Minggu, 20 Desember 2026</strong> dengan rangkaian istimewa sebagai wujud rasa syukur atas 36 tahun kemaslahatan ummat:
+          </p>
+
+          <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <div class="flex items-start gap-3 bg-white/10 p-3.5 rounded-xl border border-white/10 backdrop-blur-sm">
+              <span class="text-lg">🏛️</span>
+              <div>
+                <strong class="block text-white">Peresmian Gedung Baru</strong>
+                <span class="text-blue-200">Peresmian Aula Baru, Ruang Rawat Eksekutif, dan Layanan Fisioterapi modern.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 bg-white/10 p-3.5 rounded-xl border border-white/10 backdrop-blur-sm">
+              <span class="text-lg">🧪</span>
+              <div>
+                <strong class="block text-white">Layanan Laboratorium Murah</strong>
+                <span class="text-blue-200">Pemeriksaan kesehatan & lab dengan tarif spesial milad bagi masyarakat umum.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 bg-white/10 p-3.5 rounded-xl border border-white/10 backdrop-blur-sm">
+              <span class="text-lg">🎥</span>
+              <div>
+                <strong class="block text-white">Tasyakuran & Live Streaming</strong>
+                <span class="text-blue-200">Disiarkan langsung melalui videotron dan kanal YouTube resmi RSASF.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 bg-white/10 p-3.5 rounded-xl border border-white/10 backdrop-blur-sm">
+              <span class="text-lg">🤝</span>
+              <div>
+                <strong class="block text-white">Temu Tokoh & Ramah Tamah</strong>
+                <span class="text-blue-200">Silaturahim dan refleksi milad bersama jajaran Pimpinan Daerah 'Aisyiyah & Muhammadiyah Sidoarjo.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Papan Doa & Harapan -->
+  <section id="doa" class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10">
+        <span class="text-rsBlue-600 font-bold uppercase tracking-wider text-xs">Papan Doa Virtual</span>
+        <h2 class="mt-2 text-3xl font-extrabold text-slate-900">Tautkan Doa & Harapan Anda</h2>
+        <p class="mt-2 text-slate-600 text-sm">
+          Sampaikan ucapan tahniah dan doa tulus untuk keberkahan pelayanan RSU 'Aisyiyah Siti Fatimah Tulangan di Milad Ke-36.
+        </p>
+        <div class="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-rsBlue-50 text-rsBlue-800 border border-rsBlue-100">
+          <span>✨ Total Doa Terkumpul:</span>
+          <span id="wishesCountBadge" class="font-bold">0 Doa</span>
+        </div>
+      </div>
+
+      <!-- Alert Notification -->
+      <div id="alertSuccess" class="hidden mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-medium flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span>✅</span>
+          <span>Jazakallahu khair! Doa dan harapan Anda berhasil ditautkan.</span>
+        </div>
+        <button type="button" onclick="document.getElementById('alertSuccess').classList.add('hidden')" class="text-emerald-600 hover:text-emerald-900 text-xs">✕</button>
+      </div>
+
+      <!-- Form Ucapan -->
+      <form id="doaForm" class="bg-slate-50 border border-slate-200 p-6 rounded-2xl shadow-sm mb-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
+            <input type="text" id="senderName" required placeholder="Contoh: drg. Ahmad Fauzi" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rsBlue-500 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Status / Relasi</label>
+            <input type="text" id="senderRole" placeholder="Contoh: Pasien / Dokter / Warga Tulangan / Kader PCA" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rsBlue-500 text-sm">
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Doa & Harapan <span class="text-red-500">*</span></label>
+          <textarea id="senderMessage" rows="3" required placeholder="Tuliskan doa kebaikan atau ucapan selamat Milad Ke-36..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rsBlue-500 text-sm"></textarea>
+        </div>
+        <button type="submit" class="w-full sm:w-auto px-6 py-2.5 bg-rsBlue-600 hover:bg-rsBlue-700 text-white font-bold rounded-xl text-sm transition shadow-sm hover:shadow active:scale-95">
+          Kirimkan Doa ✨
+        </button>
+      </form>
+
+      <!-- Live Feed Ucapan -->
+      <div id="wishesList" class="space-y-4">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Resmi -->
+  <footer class="bg-slate-900 text-slate-400 py-12 text-sm border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 pb-8 border-b border-slate-800">
+        <div>
+          <div class="bg-white p-2.5 rounded-xl inline-block mb-3">
+            <img src="logo 36.jpeg" alt="RSU 'Aisyiyah Siti Fatimah" class="h-8 w-auto object-contain" />
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-3">
+            Amal Usaha Kesehatan Pimpinan Daerah 'Aisyiyah Sidoarjo. Melayani masyarakat Tulangan dan sekitarnya dengan nilai-nilai luhur Islami.
+          </p>
+          <span class="inline-block px-2.5 py-1 rounded bg-rsTeal-800 text-rsGold-400 text-[11px] font-semibold">
+            Terakreditasi LARSI Paripurna
+          </span>
+        </div>
+        <div>
+          <h5 class="font-bold text-white text-sm mb-3">Kontak & Alamat</h5>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Jl. Raya Kenongo No. 14 RT 001 RW 001, Tulangan, Sidoarjo, Jawa Timur (61273)
+          </p>
+          <p class="text-xs text-slate-400 mt-2">
+            Telepon: (031) 8851840 / (031) 8856303<br/>
+            WhatsApp: +62 812-3450-1005
+          </p>
+        </div>
+        <div>
+          <h5 class="font-bold text-white text-sm mb-3">Tautan Resmi</h5>
+          <ul class="text-xs space-y-2">
+            <li><a href="https://rsasitifatimah.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">Website Resmi (rsasitifatimah.com) ↗</a></li>
+            <li><a href="https://instagram.com/rsasitifatimah" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">Instagram @rsasitifatimah ↗</a></li>
+            <li><a href="#tentang" class="hover:text-white transition">Sejarah & Profil Singkat</a></li>
+            <li><a href="#agenda" class="hover:text-white transition">Rangkaian Acara Milad 36</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+        <p>© 2026 Panitia Milad Ke-36 RSU 'Aisyiyah Siti Fatimah Tulangan. Hak cipta dilindungi.</p>
+        <p>Tema: <em>"Bersama untuk Pelayanan yang Lebih Baik"</em></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 1. Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIconOpen = document.getElementById('menuIconOpen');
+    const menuIconClose = document.getElementById('menuIconClose');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.toggle('hidden');
+        menuIconOpen.classList.toggle('hidden', !isHidden);
+        menuIconClose.classList.toggle('hidden', isHidden);
+      });
+
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          menuIconOpen.classList.remove('hidden');
+          menuIconClose.classList.add('hidden');
+        });
+      });
+    }
+
+    // 2. Countdown Timer (Target: 20 Desember 2026, 08:00 WIB - Hari Puncak Milad Ke-36)
+    const targetDate = new Date('December 20, 2026 08:00:00').getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = String(days).padStart(2, '0');
+        document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+        document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // 3. Default Wishes & Guestbook (LocalStorage)
+    const initialWishes = [
+      { 
+        name: "Hj. Siti Aisyah", 
+        role: "Pimpinan Cabang 'Aisyiyah Tulangan", 
+        text: "Barakallahu fiik Milad Ke-36 RSU 'Aisyiyah Siti Fatimah. Semoga semakin maju, amanah, dan terus menghadirkan pelayanan terbaik untuk umat.", 
+        time: "Baru saja" 
+      },
+      { 
+        name: "dr. M. Arif, Sp.M", 
+        role: "Tim Medis Baksos Katarak", 
+        text: "Selamat Milad ke-36! Bismillah baksos katarak bersama AMCF dan Perdami berjalan lancar dan membawa manfaat luas bagi pasien dhuafa.", 
+        time: "1 jam yang lalu" 
+      },
+      { 
+        name: "Bapak Supardi", 
+        role: "Keluarga Pasien Tulangan", 
+        text: "Alhamdulillah terima kasih atas pelayanan dokter dan perawat RS Siti Fatimah yang selalu ramah dan islami. Sukses terus peresmian fasilitas barunya!", 
+        time: "3 jam yang lalu" 
+      }
+    ];
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function renderWishes() {
+      const container = document.getElementById('wishesList');
+      const countBadge = document.getElementById('wishesCountBadge');
+      const saved = JSON.parse(localStorage.getItem('rsasf_milad36_wishes')) || initialWishes;
+
+      if (countBadge) {
+        countBadge.innerText = `${saved.length} Doa`;
+      }
+
+      container.innerHTML = saved.map(item => `
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-slate-300 transition">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h5 class="font-bold text-slate-900 text-sm">${escapeHtml(item.name)}</h5>
+              <span class="text-xs text-rsTeal-600 font-semibold">${escapeHtml(item.role)}</span>
+            </div>
+            <span class="text-[11px] text-slate-400">${escapeHtml(item.time || 'Baru saja')}</span>
+          </div>
+          <p class="text-slate-600 text-sm italic">"${escapeHtml(item.text)}"</p>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('doaForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('senderName').value.trim();
+      const role = document.getElementById('senderRole').value.trim();
+      const text = document.getElementById('senderMessage').value.trim();
+
+      if (name && text) {
+        const saved = JSON.parse(localStorage.getItem('rsasf_milad36_wishes')) || initialWishes;
+        saved.unshift({ name, role: role || "Masyarakat Umum", text, time: "Baru saja" });
+        localStorage.setItem('rsasf_milad36_wishes', JSON.stringify(saved));
+        renderWishes();
+
+        const alertBox = document.getElementById('alertSuccess');
+        if (alertBox) {
+          alertBox.classList.remove('hidden');
+          setTimeout(() => alertBox.classList.add('hidden'), 5000);
+        }
+
+        this.reset();
+      }
+    });
+
+    renderWishes();
+  </script>
+</body>
+</html>
