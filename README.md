@@ -30,7 +30,7 @@ Landing page resmi peringatan **Milad Ke-36 RSU 'Aisyiyah Siti Fatimah (RSASF) T
 
 ```text
 landing-page-milad-rs/
-├── index.html                             # Landing page utama (Hero, Countdown, Profil 24/7, Agenda, Acara Puncak, Papan Doa)
+├── index.html                             # Landing page utama (Hero, Countdown, Profil 24/7, Agenda, Acara Puncak)
 ├── favicon.svg                            # Favicon resmi lambang RSU 'Aisyiyah Siti Fatimah
 ├── logo 36.jpeg                           # Logo resmi Milad Ke-36 (horizontal)
 ├── logo 36 sqare.jpeg                     # Logo resmi Milad Ke-36 (persegi)

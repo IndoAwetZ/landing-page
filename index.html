@@ -102,7 +102,6 @@
         <a href="#tentang" class="hover:text-rsBlue-600 transition">Profil & Sejarah</a>
         <a href="#agenda" class="hover:text-rsBlue-600 transition">Rangkaian Acara</a>
         <a href="#puncak" class="hover:text-rsBlue-600 transition">Acara Puncak</a>
-        <a href="#doa" class="hover:text-rsBlue-600 transition">Papan Doa</a>
       </nav>
 
       <!-- CTA Button -->
@@ -128,7 +127,6 @@
       <a href="#tentang" class="mobile-nav-link block px-3 py-2 rounded-lg font-medium text-sm text-slate-700 hover:text-rsBlue-600 hover:bg-rsBlue-50 transition">Profil & Sejarah</a>
       <a href="#agenda" class="mobile-nav-link block px-3 py-2 rounded-lg font-medium text-sm text-slate-700 hover:text-rsBlue-600 hover:bg-rsBlue-50 transition">Rangkaian Acara</a>
       <a href="#puncak" class="mobile-nav-link block px-3 py-2 rounded-lg font-medium text-sm text-slate-700 hover:text-rsBlue-600 hover:bg-rsBlue-50 transition">Acara Puncak</a>
-      <a href="#doa" class="mobile-nav-link block px-3 py-2 rounded-lg font-medium text-sm text-slate-700 hover:text-rsBlue-600 hover:bg-rsBlue-50 transition">Papan Doa</a>
       <div class="pt-2">
         <a href="#agenda" class="mobile-nav-link block text-center w-full bg-rsBlue-600 hover:bg-rsBlue-700 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow">
           Lihat Jadwal Milad
@@ -192,9 +190,6 @@
             </a>
             <a href="#puncak" class="bg-white/15 hover:bg-white/25 text-white font-semibold px-6 py-3 rounded-xl border border-white/30 backdrop-blur-md transition text-sm">
               Acara Puncak & Peresmian
-            </a>
-            <a href="#doa" class="bg-rsTeal-800/80 hover:bg-rsTeal-700 text-white font-semibold px-6 py-3 rounded-xl border border-rsTeal-500/30 backdrop-blur-md transition text-sm">
-              Kirim Doa & Harapan
             </a>
           </div>
         </div>
@@ -431,58 +426,6 @@
     </div>
   </section>
 
-  <!-- Papan Doa & Harapan -->
-  <section id="doa" class="py-20 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-10">
-        <span class="text-rsBlue-600 font-bold uppercase tracking-wider text-xs">Papan Doa Virtual</span>
-        <h2 class="mt-2 text-3xl font-extrabold text-slate-900">Tautkan Doa & Harapan Anda</h2>
-        <p class="mt-2 text-slate-600 text-sm">
-          Sampaikan ucapan tahniah dan doa tulus untuk keberkahan pelayanan RSU 'Aisyiyah Siti Fatimah Tulangan di Milad Ke-36.
-        </p>
-        <div class="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-rsBlue-50 text-rsBlue-800 border border-rsBlue-100">
-          <span>✨ Total Doa Terkumpul:</span>
-          <span id="wishesCountBadge" class="font-bold">0 Doa</span>
-        </div>
-      </div>
-
-      <!-- Alert Notification -->
-      <div id="alertSuccess" class="hidden mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-medium flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <span>✅</span>
-          <span>Jazakallahu khair! Doa dan harapan Anda berhasil ditautkan.</span>
-        </div>
-        <button type="button" onclick="document.getElementById('alertSuccess').classList.add('hidden')" class="text-emerald-600 hover:text-emerald-900 text-xs">✕</button>
-      </div>
-
-      <!-- Form Ucapan -->
-      <form id="doaForm" class="bg-slate-50 border border-slate-200 p-6 rounded-2xl shadow-sm mb-10">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-          <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
-            <input type="text" id="senderName" required placeholder="Contoh: drg. Ahmad Fauzi" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rsBlue-500 text-sm">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Status / Relasi</label>
-            <input type="text" id="senderRole" placeholder="Contoh: Pasien / Dokter / Warga Tulangan / Kader PCA" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rsBlue-500 text-sm">
-          </div>
-        </div>
-        <div class="mb-4">
-          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Doa & Harapan <span class="text-red-500">*</span></label>
-          <textarea id="senderMessage" rows="3" required placeholder="Tuliskan doa kebaikan atau ucapan selamat Milad Ke-36..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rsBlue-500 text-sm"></textarea>
-        </div>
-        <button type="submit" class="w-full sm:w-auto px-6 py-2.5 bg-rsBlue-600 hover:bg-rsBlue-700 text-white font-bold rounded-xl text-sm transition shadow-sm hover:shadow active:scale-95">
-          Kirimkan Doa ✨
-        </button>
-      </form>
-
-      <!-- Live Feed Ucapan -->
-      <div id="wishesList" class="space-y-4">
-        <!-- Rendered by JS -->
-      </div>
-    </div>
-  </section>
-
   <!-- Footer Resmi -->
   <footer class="bg-slate-900 text-slate-400 py-12 text-sm border-t border-slate-800">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
@@ -569,81 +512,6 @@
     }
     setInterval(updateCountdown, 1000);
     updateCountdown();
-
-    // 3. Default Wishes & Guestbook (LocalStorage)
-    const initialWishes = [
-      { 
-        name: "Hj. Siti Aisyah", 
-        role: "Pimpinan Cabang 'Aisyiyah Tulangan", 
-        text: "Barakallahu fiik Milad Ke-36 RSU 'Aisyiyah Siti Fatimah. Semoga semakin maju, amanah, dan terus menghadirkan pelayanan terbaik untuk umat.", 
-        time: "Baru saja" 
-      },
-      { 
-        name: "dr. M. Arif, Sp.M", 
-        role: "Tim Medis Baksos Katarak", 
-        text: "Selamat Milad ke-36! Bismillah baksos katarak bersama AMCF dan Perdami berjalan lancar dan membawa manfaat luas bagi pasien dhuafa.", 
-        time: "1 jam yang lalu" 
-      },
-      { 
-        name: "Bapak Supardi", 
-        role: "Keluarga Pasien Tulangan", 
-        text: "Alhamdulillah terima kasih atas pelayanan dokter dan perawat RS Siti Fatimah yang selalu ramah dan islami. Sukses terus peresmian fasilitas barunya!", 
-        time: "3 jam yang lalu" 
-      }
-    ];
-
-    function escapeHtml(str) {
-      const div = document.createElement('div');
-      div.textContent = str;
-      return div.innerHTML;
-    }
-
-    function renderWishes() {
-      const container = document.getElementById('wishesList');
-      const countBadge = document.getElementById('wishesCountBadge');
-      const saved = JSON.parse(localStorage.getItem('rsasf_milad36_wishes')) || initialWishes;
-
-      if (countBadge) {
-        countBadge.innerText = `${saved.length} Doa`;
-      }
-
-      container.innerHTML = saved.map(item => `
-        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-slate-300 transition">
-          <div class="flex justify-between items-start mb-2">
-            <div>
-              <h5 class="font-bold text-slate-900 text-sm">${escapeHtml(item.name)}</h5>
-              <span class="text-xs text-rsTeal-600 font-semibold">${escapeHtml(item.role)}</span>
-            </div>
-            <span class="text-[11px] text-slate-400">${escapeHtml(item.time || 'Baru saja')}</span>
-          </div>
-          <p class="text-slate-600 text-sm italic">"${escapeHtml(item.text)}"</p>
-        </div>
-      `).join('');
-    }
-
-    document.getElementById('doaForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = document.getElementById('senderName').value.trim();
-      const role = document.getElementById('senderRole').value.trim();
-      const text = document.getElementById('senderMessage').value.trim();
-
-      if (name && text) {
-        const saved = JSON.parse(localStorage.getItem('rsasf_milad36_wishes')) || initialWishes;
-        saved.unshift({ name, role: role || "Masyarakat Umum", text, time: "Baru saja" });
-        localStorage.setItem('rsasf_milad36_wishes', JSON.stringify(saved));
-        renderWishes();
-
-        const alertBox = document.getElementById('alertSuccess');
-        if (alertBox) {
-          alertBox.classList.remove('hidden');
-          setTimeout(() => alertBox.classList.add('hidden'), 5000);
-        }
-
-        this.reset();
-      }
-    });
-
-    renderWishes();
   </script>
 </body>
 </html>
