@@ -294,7 +294,6 @@
             <div>
               <h4 class="font-bold text-slate-900 text-base">dr. M. Hud Suhargono, Sp.OG(K) Obsos</h4>
               <p class="text-xs text-slate-500 font-medium">Direktur RSU 'Aisyiyah Siti Fatimah Tulangan</p>
-              <p class="text-[11px] text-rsTeal-600 font-semibold mt-0.5">Pimpinan Daerah 'Aisyiyah Sidoarjo</p>
             </div>
           </div>
         </div>
@@ -555,9 +554,11 @@
             Amal Usaha Kesehatan Pimpinan Daerah 'Aisyiyah Sidoarjo. Melayani masyarakat Tulangan dan sekitarnya dengan
             nilai-nilai luhur Islami.
           </p>
-          <span class="inline-block px-2.5 py-1 rounded bg-rsTeal-800 text-rsGold-400 text-[11px] font-semibold">
+          <button type="button" id="secretAdminTrigger"
+            class="inline-block px-2.5 py-1 rounded bg-rsTeal-800 text-rsGold-400 text-[11px] font-semibold hover:bg-rsTeal-700/80 transition cursor-pointer select-none text-left focus:outline-none"
+            title="Terakreditasi LARSI Paripurna">
             Terakreditasi LARSI Paripurna
-          </span>
+          </button>
         </div>
         <div>
           <h5 class="font-bold text-white text-sm mb-3">Kontak & Alamat</h5>
@@ -588,6 +589,75 @@
       </div>
     </div>
   </footer>
+
+  <!-- Modal Rahasia: Pemantau Data Pendaftar (Khusus Admin/Panitia) -->
+  <div id="adminModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-6 hidden">
+    <div class="bg-white w-full max-w-5xl max-h-[92vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-rsBlue-600 flex items-center justify-center text-lg">
+            🔒
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-bold text-base text-white">Panel Data Pendaftar (Admin Panitia)</h3>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Akses Rahasia</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">Membaca live data Google Sheet tanpa perlu membuka spreadsheet langsung</p>
+          </div>
+        </div>
+        <button id="closeAdminModalBtn" class="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition text-lg leading-none" title="Tutup Panel">
+          ✕
+        </button>
+      </div>
+
+      <!-- Controls & Tabs -->
+      <div class="px-6 py-3.5 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <!-- Tab Kegiatan -->
+        <div class="flex items-center gap-2">
+          <button id="adminTabKatarak" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-amber-600 text-white shadow-sm">
+            <span>👁️</span> <span>Katarak</span>
+            <span id="adminBadgeKatarak" class="ml-1 px-1.5 py-0.2 rounded-full bg-amber-800/60 text-[10px]">--</span>
+          </button>
+          <button id="adminTabKhitan" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-slate-100 border border-slate-200">
+            <span>✂️</span> <span>Khitan Massal</span>
+            <span id="adminBadgeKhitan" class="ml-1 px-1.5 py-0.2 rounded-full bg-slate-200 text-slate-700 text-[10px]">--</span>
+          </button>
+        </div>
+
+        <!-- Search & Refresh -->
+        <div class="flex items-center gap-2 flex-grow sm:flex-grow-0">
+          <div class="relative flex-grow sm:w-64">
+            <input type="text" id="adminSearchInput" placeholder="Cari nama, alamat, no hp..."
+              class="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rsBlue-500 bg-white" />
+            <span class="absolute left-2.5 top-2 text-slate-400 text-xs">🔍</span>
+          </div>
+          <button id="adminRefreshBtn" class="px-3 py-1.5 bg-rsBlue-600 hover:bg-rsBlue-700 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5 active:scale-95" title="Refresh Data Live">
+            <span id="adminRefreshIcon">🔄</span> <span>Sinkron</span>
+          </button>
+          <button id="adminExportBtn" class="px-3 py-1.5 bg-slate-700 hover:bg-slate-800 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5" title="Ekspor ke CSV">
+            <span>📥</span> <span>CSV</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Table & Content) -->
+      <div id="adminContentArea" class="flex-grow overflow-auto p-6 bg-slate-100/60 min-h-[300px]">
+        <!-- Content will be rendered by JS -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-3 bg-white border-t border-slate-200 flex items-center justify-between text-xs text-slate-500 shrink-0">
+        <span id="adminStatusText">Siap memuat data...</span>
+        <button id="closeAdminModalFooterBtn" class="px-4 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-lg transition">
+          Tutup
+        </button>
+      </div>
+
+    </div>
+  </div>
 
   <script>
     // 1. Mobile Menu Toggle
@@ -739,6 +809,347 @@
 
     fetchKhitanQuota();
     setInterval(fetchKhitanQuota, 60000);
+
+    // ==========================================
+    // PANEL RAHASIA ADMIN / PANITIA (Via Footer LARSI)
+    // ==========================================
+    const adminTrigger = document.getElementById('secretAdminTrigger');
+    const adminModal = document.getElementById('adminModal');
+    const closeAdminModalBtn = document.getElementById('closeAdminModalBtn');
+    const closeAdminModalFooterBtn = document.getElementById('closeAdminModalFooterBtn');
+    const adminTabKatarak = document.getElementById('adminTabKatarak');
+    const adminTabKhitan = document.getElementById('adminTabKhitan');
+    const adminBadgeKatarak = document.getElementById('adminBadgeKatarak');
+    const adminBadgeKhitan = document.getElementById('adminBadgeKhitan');
+    const adminSearchInput = document.getElementById('adminSearchInput');
+    const adminRefreshBtn = document.getElementById('adminRefreshBtn');
+    const adminExportBtn = document.getElementById('adminExportBtn');
+    const adminContentArea = document.getElementById('adminContentArea');
+    const adminStatusText = document.getElementById('adminStatusText');
+
+    let currentAdminTab = 'katarak'; // 'katarak' or 'khitan'
+    let adminCache = {
+      katarak: { rows: null, headers: null, registered: null, lastUpdated: null },
+      khitan: { rows: null, headers: null, registered: null, lastUpdated: null }
+    };
+
+    function openAdminModal() {
+      if (adminModal) {
+        adminModal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        loadAdminData(currentAdminTab);
+      }
+    }
+
+    function closeAdminModal() {
+      if (adminModal) {
+        adminModal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    if (adminTrigger) adminTrigger.addEventListener('click', openAdminModal);
+    if (closeAdminModalBtn) closeAdminModalBtn.addEventListener('click', closeAdminModal);
+    if (closeAdminModalFooterBtn) closeAdminModalFooterBtn.addEventListener('click', closeAdminModal);
+
+    // Close on backdrop click
+    if (adminModal) {
+      adminModal.addEventListener('click', (e) => {
+        if (e.target === adminModal) closeAdminModal();
+      });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && adminModal && !adminModal.classList.contains('hidden')) {
+        closeAdminModal();
+      }
+    });
+
+    // Tab switching
+    if (adminTabKatarak) {
+      adminTabKatarak.addEventListener('click', () => {
+        if (currentAdminTab !== 'katarak') {
+          currentAdminTab = 'katarak';
+          updateTabStyles();
+          loadAdminData('katarak');
+        }
+      });
+    }
+
+    if (adminTabKhitan) {
+      adminTabKhitan.addEventListener('click', () => {
+        if (currentAdminTab !== 'khitan') {
+          currentAdminTab = 'khitan';
+          updateTabStyles();
+          loadAdminData('khitan');
+        }
+      });
+    }
+
+    function updateTabStyles() {
+      if (currentAdminTab === 'katarak') {
+        adminTabKatarak.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-amber-600 text-white shadow-sm';
+        adminTabKhitan.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-slate-100 border border-slate-200';
+      } else {
+        adminTabKhitan.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-rsTeal-600 text-white shadow-sm';
+        adminTabKatarak.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-slate-100 border border-slate-200';
+      }
+      if (adminSearchInput) adminSearchInput.value = '';
+    }
+
+    // Fetch data from GAPPS
+    async function loadAdminData(tab, forceRefresh = false) {
+      const apiUrl = tab === 'katarak' ? KATARAK_API_URL : KHITAN_API_URL;
+      const tabName = tab === 'katarak' ? 'Operasi Katarak' : 'Khitan Massal';
+
+      if (!forceRefresh && adminCache[tab].rows) {
+        renderAdminTable(adminCache[tab]);
+        return;
+      }
+
+      adminContentArea.innerHTML = `
+        <div class="flex flex-col items-center justify-center py-16 text-slate-500">
+          <div class="w-10 h-10 border-4 border-rsBlue-200 border-t-rsBlue-600 rounded-full animate-spin mb-3"></div>
+          <p class="text-xs font-bold text-slate-700">Mengambil data live dari Google Sheet ${tabName}...</p>
+          <p class="text-[11px] text-slate-400 mt-1">Menghubungi endpoint Google Apps Script</p>
+        </div>
+      `;
+      adminStatusText.textContent = `Menghubungkan ke server ${tabName}...`;
+
+      try {
+        const fetchUrl = apiUrl + (apiUrl.includes('?') ? '&' : '?') + 'action=detail&_t=' + Date.now();
+        const res = await fetch(fetchUrl);
+        const json = await res.json();
+
+        const registeredCount = json.registered || (Array.isArray(json.rows) ? json.rows.length : (Array.isArray(json.data) ? json.data.length : 0));
+        
+        // Update tab badge
+        if (tab === 'katarak' && adminBadgeKatarak) adminBadgeKatarak.textContent = registeredCount;
+        if (tab === 'khitan' && adminBadgeKhitan) adminBadgeKhitan.textContent = registeredCount;
+
+        // Check if full row data is returned
+        const rows = json.rows || json.data;
+        const headers = json.headers || (rows && rows.length > 0 ? Object.keys(rows[0]) : []);
+
+        adminCache[tab] = {
+          rows: rows || null,
+          headers: headers,
+          registered: registeredCount,
+          lastUpdated: new Date()
+        };
+
+        renderAdminTable(adminCache[tab]);
+      } catch (err) {
+        console.error('Gagal mengambil data admin:', err);
+        adminContentArea.innerHTML = `
+          <div class="bg-red-50 border border-red-200 rounded-xl p-6 text-center text-red-700">
+            <span class="text-3xl block mb-2">⚠️</span>
+            <h4 class="font-bold text-sm">Gagal Mengambil Data dari Google Sheet</h4>
+            <p class="text-xs text-red-600 mt-1 max-w-md mx-auto">
+              Terjadi kendala jaringan atau endpoint Google Apps Script belum memberikan izin akses CORS.
+            </p>
+            <p class="text-[11px] text-slate-500 mt-2 font-mono bg-white p-2 rounded border border-red-100 inline-block">
+              ${err.message}
+            </p>
+            <div class="mt-4">
+              <button onclick="loadAdminData('${tab}', true)" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-bold transition">
+                Coba Lagi 🔄
+              </button>
+            </div>
+          </div>
+        `;
+        adminStatusText.textContent = 'Gagal memuat data.';
+      }
+    }
+
+    function renderAdminTable(cacheData) {
+      const nowStr = cacheData.lastUpdated ? cacheData.lastUpdated.toLocaleTimeString('id-ID') : '-';
+      adminStatusText.textContent = `Tersinkronisasi pukul ${nowStr} • Total Terdata: ${cacheData.registered} Pendaftar`;
+
+      // JIKA Google Apps Script baru mengembalikan { registered: X } dan belum mengembalikan rows:
+      if (!cacheData.rows || cacheData.rows.length === 0) {
+        adminContentArea.innerHTML = `
+          <div class="space-y-4">
+            <!-- Box Ringkasan -->
+            <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl font-bold">
+                  📊
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm">Status Endpoint Google Apps Script Terhubung</h4>
+                  <p class="text-xs text-slate-500">Membaca data live dari spreadsheet tanpa membuka Google Drive.</p>
+                </div>
+              </div>
+              <div class="text-center sm:text-right bg-slate-50 px-4 py-2 rounded-xl border border-slate-200">
+                <span class="text-[11px] text-slate-400 block font-medium">Total Pendaftar di Sheet</span>
+                <span class="text-2xl font-extrabold text-rsBlue-600">${cacheData.registered} Orang</span>
+              </div>
+            </div>
+
+            <!-- Petunjuk Upgrade Kode Apps Script -->
+            <div class="bg-blue-50/70 border border-blue-200 rounded-xl p-5 text-slate-700 text-xs">
+              <div class="flex items-center gap-2 mb-2 text-rsBlue-700 font-bold text-sm">
+                <span>💡</span> <span>Ingin Melihat Nama & Isi Kolom Pasien Langsung di Panel Ini?</span>
+              </div>
+              <p class="text-slate-600 leading-relaxed mb-3">
+                Script Anda saat ini sudah berhasil membaca <strong>jumlah baris (${cacheData.registered} pendaftar)</strong>. 
+                Agar nama, nomor HP, dan alamat pasien dapat tampil langsung di tabel panel ini tanpa perlu membuka Google Sheet, silakan salin kode berikut ke menu <strong>Ekstensi ➔ Apps Script</strong> di spreadsheet Anda:
+              </p>
+              <div class="relative bg-slate-900 text-slate-100 p-3.5 rounded-lg font-mono text-[11px] overflow-x-auto max-h-56">
+                <button onclick="copyGasScript()" class="absolute top-2 right-2 px-2.5 py-1 bg-rsBlue-600 hover:bg-rsBlue-700 text-white rounded text-[10px] font-sans font-bold transition">
+                  Salin Kode 📋
+                </button>
+                <pre id="gasScriptCode"><code>function doGet(e) {
+  var action = (e && e.parameter && e.parameter.action) ? e.parameter.action : "count";
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getActiveSheet();
+  var lastRow = sheet.getLastRow();
+  var lastCol = sheet.getLastColumn();
+
+  if (lastRow &lt; 2) {
+    return ContentService.createTextOutput(JSON.stringify({ registered: 0, headers: [], rows: [] }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  // Jika panel admin meminta detail isi baris:
+  if (action === "detail" || action === "rows") {
+    var raw = sheet.getRange(1, 1, lastRow, lastCol).getDisplayValues();
+    var headers = raw[0];
+    var rows = [];
+    for (var i = 1; i &lt; raw.length; i++) {
+      var rowObj = {};
+      var hasData = false;
+      for (var j = 0; j &lt; headers.length; j++) {
+        var val = raw[i][j];
+        if (val) hasData = true;
+        rowObj[headers[j] || ("Kolom_" + (j+1))] = val;
+      }
+      if (hasData) rows.push(rowObj);
+    }
+    return ContentService.createTextOutput(JSON.stringify({ registered: rows.length, headers: headers, rows: rows }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  // Default untuk kuota publik:
+  return ContentService.createTextOutput(JSON.stringify({ registered: lastRow - 1 }))
+    .setMimeType(ContentService.MimeType.JSON);
+}</code></pre>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-2">
+                *Setelah menempel kode, klik <strong>Terapkan (Deploy) ➔ Kelola Penerapan ➔ Buat Versi Baru (New Version)</strong>.
+              </p>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      // JIKA DATA BARIS TERSEDIA:
+      renderFilteredRows(cacheData.rows, cacheData.headers);
+    }
+
+    function renderFilteredRows(rows, headers) {
+      const keyword = (adminSearchInput ? adminSearchInput.value : '').toLowerCase().trim();
+      const filtered = keyword ? rows.filter(r => {
+        return Object.values(r).some(val => String(val).toLowerCase().includes(keyword));
+      }) : rows;
+
+      if (filtered.length === 0) {
+        adminContentArea.innerHTML = `
+          <div class="bg-white rounded-xl border border-slate-200 p-8 text-center text-slate-500">
+            <span class="text-3xl block mb-2">🔍</span>
+            <p class="font-bold text-xs text-slate-700">Tidak ada data pendaftar yang cocok dengan pencarian "${keyword}"</p>
+            <p class="text-[11px] text-slate-400 mt-1">Coba gunakan kata kunci nama atau nomor HP lainnya.</p>
+          </div>
+        `;
+        return;
+      }
+
+      let tableHtml = `
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+          <div class="p-3 bg-slate-50 border-b border-slate-200 flex justify-between items-center text-xs text-slate-600 font-medium">
+            <span>Menampilkan <strong>${filtered.length}</strong> dari <strong>${rows.length}</strong> data pendaftar</span>
+            ${keyword ? `<span class="text-amber-700 font-bold">Filter: "${keyword}"</span>` : ''}
+          </div>
+          <div class="overflow-x-auto max-h-[55vh]">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead class="bg-slate-100 text-slate-700 uppercase text-[10px] tracking-wider sticky top-0 border-b border-slate-200">
+                <tr>
+                  <th class="py-2.5 px-3 font-bold border-r border-slate-200 text-center w-12">No</th>
+                  ${headers.map(h => `<th class="py-2.5 px-3 font-bold border-r border-slate-200 whitespace-nowrap">${h}</th>`).join('')}
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                ${filtered.map((row, idx) => `
+                  <tr class="hover:bg-slate-50/80 transition">
+                    <td class="py-2 px-3 text-center font-bold text-slate-400 bg-slate-50/50 border-r border-slate-100">${idx + 1}</td>
+                    ${headers.map(h => `<td class="py-2 px-3 border-r border-slate-100 whitespace-nowrap text-slate-800">${row[h] || '-'}</td>`).join('')}
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+      adminContentArea.innerHTML = tableHtml;
+    }
+
+    // Search filter live
+    if (adminSearchInput) {
+      adminSearchInput.addEventListener('input', () => {
+        const cacheData = adminCache[currentAdminTab];
+        if (cacheData && cacheData.rows) {
+          renderFilteredRows(cacheData.rows, cacheData.headers);
+        }
+      });
+    }
+
+    // Refresh button
+    if (adminRefreshBtn) {
+      adminRefreshBtn.addEventListener('click', () => {
+        loadAdminData(currentAdminTab, true);
+      });
+    }
+
+    // Export CSV
+    if (adminExportBtn) {
+      adminExportBtn.addEventListener('click', () => {
+        const cacheData = adminCache[currentAdminTab];
+        if (!cacheData || !cacheData.rows || cacheData.rows.length === 0) {
+          alert('Belum ada data baris yang dapat diekspor.');
+          return;
+        }
+        const headers = cacheData.headers;
+        const rows = cacheData.rows;
+        let csvContent = '\uFEFF'; // BOM UTF-8
+        csvContent += headers.map(h => `"${String(h).replace(/"/g, '""')}"`).join(',') + '\r\n';
+        rows.forEach(r => {
+          csvContent += headers.map(h => `"${String(r[h] || '').replace(/"/g, '""')}"`).join(',') + '\r\n';
+        });
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `pendaftar_${currentAdminTab}_${new Date().toISOString().slice(0, 10)}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    }
+
+    window.copyGasScript = function() {
+      const codeEl = document.getElementById('gasScriptCode');
+      if (codeEl) {
+        navigator.clipboard.writeText(codeEl.innerText).then(() => {
+          alert('Kode Apps Script berhasil disalin ke clipboard! Silakan tempelkan di Google Apps Script spreadsheet Anda.');
+        }).catch(() => {
+          alert('Gagal menyalin otomatis. Silakan pilih teks kode dan tekan Ctrl+C.');
+        });
+      }
+    };
   </script>
 </body>
 
