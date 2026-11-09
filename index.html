@@ -329,22 +329,22 @@
 
             <h3 class="text-base font-bold text-slate-900">Operasi & Skrining Katarak Gratis</h3>
             <p class="text-slate-600 text-xs mt-2 leading-relaxed">
-              Bekerja sama dengan <strong>AMCF dan PERDAMI</strong>. Kuota 75 pasien operasi.
+              Bekerja sama dengan <strong>AMCF & PERDAMI</strong>. Pendaftaran dibuka untuk <strong>150 peserta skrining</strong> guna menentukan <strong>75 pasien</strong> yang memenuhi kriteria medis untuk tindakan operasi katarak gratis.
             </p>
             <div class="mt-4 p-3 bg-amber-50 rounded-xl border border-amber-200/60 text-xs space-y-1 text-slate-700">
-              <p><strong>Pendaftaran Ditutup:</strong> 15 Nov 2026</p>
-              <p><strong>Skrining (3 Hari):</strong> 20 Nov 2026</p>
-              <p><strong>Operasi:</strong> 28 Nov 2026 (08.00 WIB)</p>
+              <p><strong>Batas Pendaftaran:</strong> 15 Nov 2026</p>
+              <p><strong>Tahap 1 (Skrining Awal):</strong> 20 Nov 2026</p>
+              <p><strong>Tahap 2 (Operasi):</strong> 28 Nov 2026 (08.00 WIB)</p>
             </div>
 
-            <!-- Kuota Real-time Tracker Katarak -->
+            <!-- Kuota Real-time Tracker Katarak (Berdasarkan Kuota Skrining 150 Pendaftar) -->
             <div class="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-200/80">
               <div class="flex justify-between items-center text-xs mb-1.5">
                 <span class="font-bold text-slate-700 flex items-center gap-1.5">
-                  <span class="text-sm">👁️</span> Kuota Pasien:
+                  <span class="text-sm">👁️</span> Kuota Skrining:
                 </span>
                 <span id="katarakQuotaNumbers" class="font-bold text-slate-900">
-                  <span id="katarakRegistered" class="text-amber-700">--</span> / 75
+                  <span id="katarakRegistered" class="text-amber-700">--</span> / 150 Pendaftar
                 </span>
               </div>
               <div class="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
@@ -353,18 +353,25 @@
                   style="width: 0%"></div>
               </div>
               <div class="flex justify-between items-center text-[11px] text-slate-500 mt-2 font-medium">
-                <span>Sisa Kuota: <strong id="katarakRemaining" class="text-emerald-700 font-bold">--</strong>
-                  slot</span>
+                <span>Sisa Kuota Skrining: <strong id="katarakRemaining" class="text-emerald-700 font-bold">--</strong> slot</span>
                 <span id="katarakSyncTime" class="text-[10px] text-slate-400">Sinkron otomatis</span>
               </div>
+            </div>
+
+            <!-- Catatan Edukasi Pasien (Transparansi 150 vs 75) -->
+            <div class="mt-3 p-3 bg-blue-50/80 border border-blue-200/70 rounded-xl text-[11px] text-slate-600 leading-relaxed flex items-start gap-2">
+              <span class="text-rsBlue-600 text-sm leading-none shrink-0 mt-0.5">ℹ️</span>
+              <p>
+                <strong>Alur Pasien:</strong> Pendaftaran mencakup kuota 150 pasien skrining. <strong>75 pasien</strong> dengan kondisi mata & fisik yang laik operasi berdasarkan hasil skrining dokter spesialis mata yang akan dijadwalkan tindakan operasi.
+              </p>
             </div>
           </div>
 
           <div class="mt-5 pt-3 border-t border-slate-100 flex flex-col gap-2">
-            <a id="katarakFormBtn" href="https://forms.gle/pendaftaran-katarak-rsasf" target="_blank"
+            <a id="katarakFormBtn" href="https://forms.gle/pevaVYB5GPsT84qp7" target="_blank"
               rel="noopener noreferrer"
               class="w-full py-2.5 px-4 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl shadow-sm hover:shadow transition active:scale-95 flex items-center justify-center gap-1.5">
-              <span>👁️</span> <span>Daftar Operasi Katarak ↗</span>
+              <span>👁️</span> <span>Daftar Skrining & Operasi Katarak ↗</span>
             </a>
             <span class="text-center text-[11px] text-slate-400">📍 Ruang OK, PKRS & Poli RSASF</span>
           </div>
@@ -438,7 +445,7 @@
             </div>
           </div>
           <div class="mt-5 pt-3 border-t border-slate-100 flex flex-col gap-2">
-            <a href="https://forms.gle/pendaftaran-khitan-massal-rsasf" target="_blank" rel="noopener noreferrer"
+            <a href="https://forms.gle/Eek4wjQz8noH8Mw18" target="_blank" rel="noopener noreferrer"
               class="w-full py-2.5 px-4 bg-rsTeal-600 hover:bg-rsTeal-700 text-white font-bold text-xs rounded-xl shadow-sm hover:shadow transition active:scale-95 flex items-center justify-center gap-1.5">
               <span>✂️</span> <span>Buka Google Form Khitan Massal ↗</span>
             </a>
@@ -603,7 +610,7 @@
 
     // 3. Real-Time Quota Operasi Katarak Tracker (Apps Script API)
     const KATARAK_API_URL = 'https://script.google.com/macros/s/AKfycbxKy98sviHk3XBC6UAOpfd_5s2Oam1SHcOgLA-GicIFUXRTqVFBpPKHlrEarJefMEgDOg/exec';
-    const KATARAK_MAX_QUOTA = 75;
+    const KATARAK_MAX_QUOTA = 150;
 
     async function fetchKatarakQuota() {
       const registeredEl = document.getElementById('katarakRegistered');
