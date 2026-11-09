@@ -329,22 +329,24 @@
 
             <h3 class="text-base font-bold text-slate-900">Operasi & Skrining Katarak Gratis</h3>
             <p class="text-slate-600 text-xs mt-2 leading-relaxed">
-              Bekerja sama dengan <strong>AMCF & PERDAMI</strong>. Pendaftaran dibuka untuk <strong>150 peserta skrining</strong> guna menentukan <strong>75 pasien</strong> yang memenuhi kriteria medis untuk tindakan operasi katarak gratis.
+              Bekerja sama dengan <strong>AMCF & PERDAMI</strong>. Pendaftaran dibuka untuk <strong>150 peserta skrining</strong> guna menjaring <strong>75 pasien laik medis</strong> untuk tindakan operasi katarak gratis.
             </p>
             <div class="mt-4 p-3 bg-amber-50 rounded-xl border border-amber-200/60 text-xs space-y-1 text-slate-700">
               <p><strong>Batas Pendaftaran:</strong> 15 Nov 2026</p>
-              <p><strong>Tahap 1 (Skrining Awal):</strong> 20 Nov 2026</p>
-              <p><strong>Tahap 2 (Operasi):</strong> 28 Nov 2026 (08.00 WIB)</p>
+              <p><strong>Skrining Awal:</strong> 20 Nov 2026</p>
+              <p><strong>Operasi Gratis:</strong> 28 Nov 2026 (08.00 WIB)</p>
             </div>
+          </div>
 
-            <!-- Kuota Real-time Tracker Katarak (Berdasarkan Kuota Skrining 150 Pendaftar) -->
-            <div class="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-200/80">
+          <div class="mt-5 pt-3 border-t border-slate-100 flex flex-col gap-2.5">
+            <!-- Kuota Real-time Tracker Katarak (Tepat di atas tombol) -->
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80">
               <div class="flex justify-between items-center text-xs mb-1.5">
                 <span class="font-bold text-slate-700 flex items-center gap-1.5">
-                  <span class="text-sm">👁️</span> Kuota Skrining:
+                  <span class="text-sm">👁️</span> Sisa Kuota Skrining:
                 </span>
                 <span id="katarakQuotaNumbers" class="font-bold text-slate-900">
-                  <span id="katarakRegistered" class="text-amber-700">--</span> / 150 Pendaftar
+                  <span id="katarakRegistered" class="text-amber-700">--</span> / 150
                 </span>
               </div>
               <div class="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
@@ -353,21 +355,11 @@
                   style="width: 0%"></div>
               </div>
               <div class="flex justify-between items-center text-[11px] text-slate-500 mt-2 font-medium">
-                <span>Sisa Kuota Skrining: <strong id="katarakRemaining" class="text-emerald-700 font-bold">--</strong> slot</span>
+                <span>Tersisa: <strong id="katarakRemaining" class="text-emerald-700 font-bold">--</strong> slot</span>
                 <span id="katarakSyncTime" class="text-[10px] text-slate-400">Sinkron otomatis</span>
               </div>
             </div>
 
-            <!-- Catatan Edukasi Pasien (Transparansi 150 vs 75) -->
-            <div class="mt-3 p-3 bg-blue-50/80 border border-blue-200/70 rounded-xl text-[11px] text-slate-600 leading-relaxed flex items-start gap-2">
-              <span class="text-rsBlue-600 text-sm leading-none shrink-0 mt-0.5">ℹ️</span>
-              <p>
-                <strong>Alur Pasien:</strong> Pendaftaran mencakup kuota 150 pasien skrining. <strong>75 pasien</strong> dengan kondisi mata & fisik yang laik operasi berdasarkan hasil skrining dokter spesialis mata yang akan dijadwalkan tindakan operasi.
-              </p>
-            </div>
-          </div>
-
-          <div class="mt-5 pt-3 border-t border-slate-100 flex flex-col gap-2">
             <a id="katarakFormBtn" href="https://forms.gle/pevaVYB5GPsT84qp7" target="_blank"
               rel="noopener noreferrer"
               class="w-full py-2.5 px-4 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl shadow-sm hover:shadow transition active:scale-95 flex items-center justify-center gap-1.5">
@@ -451,12 +443,14 @@
               <p><strong>Target Kuota:</strong> 50 Anak Yatim/Dhuafa</p>
               <p><strong>Fasilitas:</strong> Bingkisan, Sarung & Obat</p>
             </div>
+          </div>
 
-            <!-- Kuota Real-time Tracker Khitan -->
-            <div class="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-200/80">
+          <div class="mt-5 pt-3 border-t border-slate-100 flex flex-col gap-2.5">
+            <!-- Kuota Real-time Tracker Khitan (Tepat di atas tombol) -->
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80">
               <div class="flex justify-between items-center text-xs mb-1.5">
                 <span class="font-bold text-slate-700 flex items-center gap-1.5">
-                  <span class="text-sm">✂️</span> Kuota Peserta:
+                  <span class="text-sm">✂️</span> Sisa Kuota Khitan:
                 </span>
                 <span id="khitanQuotaNumbers" class="font-bold text-slate-900">
                   <span id="khitanRegistered" class="text-rsTeal-700">--</span> / 50 Anak
@@ -468,13 +462,11 @@
                   style="width: 0%"></div>
               </div>
               <div class="flex justify-between items-center text-[11px] text-slate-500 mt-2 font-medium">
-                <span>Sisa Kuota: <strong id="khitanRemaining" class="text-emerald-700 font-bold">--</strong> slot</span>
+                <span>Tersisa: <strong id="khitanRemaining" class="text-emerald-700 font-bold">--</strong> slot</span>
                 <span id="khitanSyncTime" class="text-[10px] text-slate-400">Sinkron otomatis</span>
               </div>
             </div>
-          </div>
 
-          <div class="mt-5 pt-3 border-t border-slate-100 flex flex-col gap-2">
             <a id="khitanFormBtn" href="https://forms.gle/Eek4wjQz8noH8Mw18" target="_blank" rel="noopener noreferrer"
               class="w-full py-2.5 px-4 bg-rsTeal-600 hover:bg-rsTeal-700 text-white font-bold text-xs rounded-xl shadow-sm hover:shadow transition active:scale-95 flex items-center justify-center gap-1.5">
               <span>✂️</span> <span>Buka Google Form Khitan Massal ↗</span>
