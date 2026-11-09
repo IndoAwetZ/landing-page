@@ -396,7 +396,7 @@
             </div>
           </div>
           <div class="mt-5 pt-3 border-t border-slate-100 flex flex-col gap-2">
-            <a href="https://forms.gle/pendaftaran-donor-darah-rsasf" target="_blank" rel="noopener noreferrer"
+            <a href="https://forms.gle/4poPia6cdUq2qptv8" target="_blank" rel="noopener noreferrer"
               class="w-full py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow-sm hover:shadow transition active:scale-95 flex items-center justify-center gap-1.5">
               <span>🩸</span> <span>Buka Google Form Donor Darah ↗</span>
             </a>
@@ -674,8 +674,12 @@
               badgeStatus.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span><span>Kuota Penuh</span>';
             }
             if (formBtn) {
-              formBtn.className = 'w-full py-2.5 px-4 bg-slate-400 cursor-not-allowed text-white font-bold text-xs rounded-xl shadow-none flex items-center justify-center gap-1.5';
+              formBtn.className = 'w-full py-2.5 px-4 bg-slate-300 text-slate-500 font-bold text-xs rounded-xl shadow-none flex items-center justify-center gap-1.5 cursor-not-allowed pointer-events-none select-none opacity-80';
               formBtn.innerHTML = '<span>🔒</span> <span>Pendaftaran Ditutup (Kuota Penuh)</span>';
+              formBtn.removeAttribute('href');
+              formBtn.removeAttribute('target');
+              formBtn.setAttribute('aria-disabled', 'true');
+              formBtn.onclick = (e) => { e.preventDefault(); return false; };
             }
           }
         }
@@ -724,8 +728,12 @@
               badgeStatus.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span><span>Kuota Penuh</span>';
             }
             if (formBtn) {
-              formBtn.className = 'w-full py-2.5 px-4 bg-slate-400 cursor-not-allowed text-white font-bold text-xs rounded-xl shadow-none flex items-center justify-center gap-1.5';
+              formBtn.className = 'w-full py-2.5 px-4 bg-slate-300 text-slate-500 font-bold text-xs rounded-xl shadow-none flex items-center justify-center gap-1.5 cursor-not-allowed pointer-events-none select-none opacity-80';
               formBtn.innerHTML = '<span>🔒</span> <span>Pendaftaran Ditutup (Kuota Penuh)</span>';
+              formBtn.removeAttribute('href');
+              formBtn.removeAttribute('target');
+              formBtn.setAttribute('aria-disabled', 'true');
+              formBtn.onclick = (e) => { e.preventDefault(); return false; };
             }
           }
         }
