@@ -622,8 +622,12 @@
             <span id="adminBadgeKatarak" class="ml-1 px-1.5 py-0.2 rounded-full bg-amber-800/60 text-[10px]">--</span>
           </button>
           <button id="adminTabKhitan" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-slate-100 border border-slate-200">
-            <span>✂️</span> <span>Khitan Massal</span>
+            <span>✂️</span> <span>Khitan Umum</span>
             <span id="adminBadgeKhitan" class="ml-1 px-1.5 py-0.2 rounded-full bg-slate-200 text-slate-700 text-[10px]">--</span>
+          </button>
+          <button id="adminTabKhitanInternal" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-slate-100 border border-slate-200">
+            <span>🏥</span> <span>Khitan Internal RS</span>
+            <span id="adminBadgeKhitanInternal" class="ml-1 px-1.5 py-0.2 rounded-full bg-slate-200 text-slate-700 text-[10px]">--</span>
           </button>
         </div>
 
@@ -813,24 +817,29 @@
     // ==========================================
     // PANEL RAHASIA ADMIN / PANITIA (Via Footer LARSI)
     // ==========================================
+    const KHITAN_INTERNAL_API_URL = 'https://script.google.com/macros/s/AKfycbxjpeg43wfC0f-X_km0b2ilFKbywr1TT7I9656QYVAa_m9XxUSd66RWMVRsf-XdHdpz/exec';
+
     const adminTrigger = document.getElementById('secretAdminTrigger');
     const adminModal = document.getElementById('adminModal');
     const closeAdminModalBtn = document.getElementById('closeAdminModalBtn');
     const closeAdminModalFooterBtn = document.getElementById('closeAdminModalFooterBtn');
     const adminTabKatarak = document.getElementById('adminTabKatarak');
     const adminTabKhitan = document.getElementById('adminTabKhitan');
+    const adminTabKhitanInternal = document.getElementById('adminTabKhitanInternal');
     const adminBadgeKatarak = document.getElementById('adminBadgeKatarak');
     const adminBadgeKhitan = document.getElementById('adminBadgeKhitan');
+    const adminBadgeKhitanInternal = document.getElementById('adminBadgeKhitanInternal');
     const adminSearchInput = document.getElementById('adminSearchInput');
     const adminRefreshBtn = document.getElementById('adminRefreshBtn');
     const adminExportBtn = document.getElementById('adminExportBtn');
     const adminContentArea = document.getElementById('adminContentArea');
     const adminStatusText = document.getElementById('adminStatusText');
 
-    let currentAdminTab = 'katarak'; // 'katarak' or 'khitan'
+    let currentAdminTab = 'katarak'; // 'katarak', 'khitan', or 'khitan_internal'
     let adminCache = {
       katarak: { rows: null, headers: null, registered: null, lastUpdated: null },
-      khitan: { rows: null, headers: null, registered: null, lastUpdated: null }
+      khitan: { rows: null, headers: null, registered: null, lastUpdated: null },
+      khitan_internal: { rows: null, headers: null, registered: null, lastUpdated: null }
     };
 
     function openAdminModal() {
@@ -838,7 +847,27 @@
         adminModal.classList.remove('hidden');
         document.body.classList.add('overflow-hidden');
         loadAdminData(currentAdminTab);
+        // Pre-fetch count untuk tab lainnya agar badge terupdate
+        fetchAllAdminBadges();
       }
+    }
+
+    async function fetchAllAdminBadges() {
+      const tabs = [
+        { key: 'katarak', url: KATARAK_API_URL, badge: adminBadgeKatarak },
+        { key: 'khitan', url: KHITAN_API_URL, badge: adminBadgeKhitan },
+        { key: 'khitan_internal', url: KHITAN_INTERNAL_API_URL, badge: adminBadgeKhitanInternal }
+      ];
+      tabs.forEach(async (t) => {
+        try {
+          const res = await fetch(t.url + (t.url.includes('?') ? '&' : '?') + '_t=' + Date.now());
+          const d = await res.json();
+          const count = d.registered || (Array.isArray(d.rows) ? d.rows.length : (Array.isArray(d.data) ? d.data.length : 0));
+          if (t.badge) t.badge.textContent = count;
+        } catch (e) {
+          // ignore badge background fetch error
+        }
+      });
     }
 
     function closeAdminModal() {
@@ -887,21 +916,44 @@
       });
     }
 
+    if (adminTabKhitanInternal) {
+      adminTabKhitanInternal.addEventListener('click', () => {
+        if (currentAdminTab !== 'khitan_internal') {
+          currentAdminTab = 'khitan_internal';
+          updateTabStyles();
+          loadAdminData('khitan_internal');
+        }
+      });
+    }
+
     function updateTabStyles() {
-      if (currentAdminTab === 'katarak') {
+      const inactiveClass = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-slate-100 border border-slate-200';
+      
+      if (adminTabKatarak) adminTabKatarak.className = inactiveClass;
+      if (adminTabKhitan) adminTabKhitan.className = inactiveClass;
+      if (adminTabKhitanInternal) adminTabKhitanInternal.className = inactiveClass;
+
+      if (currentAdminTab === 'katarak' && adminTabKatarak) {
         adminTabKatarak.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-amber-600 text-white shadow-sm';
-        adminTabKhitan.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-slate-100 border border-slate-200';
-      } else {
+      } else if (currentAdminTab === 'khitan' && adminTabKhitan) {
         adminTabKhitan.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-rsTeal-600 text-white shadow-sm';
-        adminTabKatarak.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-slate-100 border border-slate-200';
+      } else if (currentAdminTab === 'khitan_internal' && adminTabKhitanInternal) {
+        adminTabKhitanInternal.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-indigo-600 text-white shadow-sm';
       }
       if (adminSearchInput) adminSearchInput.value = '';
     }
 
     // Fetch data from GAPPS
     async function loadAdminData(tab, forceRefresh = false) {
-      const apiUrl = tab === 'katarak' ? KATARAK_API_URL : KHITAN_API_URL;
-      const tabName = tab === 'katarak' ? 'Operasi Katarak' : 'Khitan Massal';
+      let apiUrl = KATARAK_API_URL;
+      let tabName = 'Operasi Katarak';
+      if (tab === 'khitan') {
+        apiUrl = KHITAN_API_URL;
+        tabName = 'Khitan Massal (Umum)';
+      } else if (tab === 'khitan_internal') {
+        apiUrl = KHITAN_INTERNAL_API_URL;
+        tabName = 'Khitan Massal Internal RS';
+      }
 
       if (!forceRefresh && adminCache[tab].rows) {
         renderAdminTable(adminCache[tab]);
@@ -927,6 +979,7 @@
         // Update tab badge
         if (tab === 'katarak' && adminBadgeKatarak) adminBadgeKatarak.textContent = registeredCount;
         if (tab === 'khitan' && adminBadgeKhitan) adminBadgeKhitan.textContent = registeredCount;
+        if (tab === 'khitan_internal' && adminBadgeKhitanInternal) adminBadgeKhitanInternal.textContent = registeredCount;
 
         // Check if full row data is returned
         const rows = json.rows || json.data;
