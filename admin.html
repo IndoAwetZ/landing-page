@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Data Pendaftar • Milad Ke-36 RSU 'Aisyiyah Siti Fatimah</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            rsBlue: {
+              50: '#eef6ff',
+              100: '#d9eaff',
+              500: '#1a73e8',
+              600: '#0b4fa8',
+              700: '#093f87',
+              800: '#08336c',
+              900: '#072856',
+            },
+            rsTeal: {
+              50: '#e6f7f5',
+              100: '#c2ece7',
+              500: '#0ea597',
+              600: '#08786f',
+              700: '#076159',
+              800: '#064d47',
+              900: '#053d38',
+            },
+            rsGold: {
+              400: '#ffd66b',
+              500: '#ffc83b',
+              600: '#e6ab17',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- Header Navigasi -->
+  <header class="bg-slate-900 text-white sticky top-0 z-30 shadow-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="bg-white p-1.5 rounded-xl flex items-center justify-center">
+          <img src="logo 36.jpeg" alt="Logo Milad 36 RSASF" class="h-8 w-auto object-contain" />
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-sm sm:text-base font-extrabold text-white tracking-tight">Panel Rekap Data Pendaftar</h1>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Admin Panitia</span>
+          </div>
+          <p class="text-xs text-slate-400">Milad Ke-36 RSU 'Aisyiyah Siti Fatimah Tulangan</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2.5">
+        <a href="index.html"
+          class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700">
+          <span>←</span> <span>Kembali ke Landing Page</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-grow w-full space-y-6">
+
+    <!-- Ringkasan Statistik Kartu (Summary Cards) -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Katarak -->
+      <div onclick="switchTab('katarak')"
+        class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm hover:shadow-md transition cursor-pointer group">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-500 group-hover:text-amber-700">👁️ Operasi Katarak</span>
+          <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+        </div>
+        <div class="mt-2 flex items-baseline justify-between">
+          <span id="summaryKatarak" class="text-2xl sm:text-3xl font-extrabold text-slate-900">--</span>
+          <span class="text-xs text-slate-400 font-medium">/ 150 Target</span>
+        </div>
+        <p class="text-[11px] text-slate-500 mt-1">Kuota Bersubsidi</p>
+      </div>
+
+      <!-- Khitan Umum -->
+      <div onclick="switchTab('khitan')"
+        class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm hover:shadow-md transition cursor-pointer group">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-500 group-hover:text-rsTeal-700">✂️ Khitan Umum</span>
+          <span class="w-2 h-2 rounded-full bg-rsTeal-500"></span>
+        </div>
+        <div class="mt-2 flex items-baseline justify-between">
+          <span id="summaryKhitan" class="text-2xl sm:text-3xl font-extrabold text-slate-900">--</span>
+          <span class="text-xs text-slate-400 font-medium">/ 50 Target</span>
+        </div>
+        <p class="text-[11px] text-slate-500 mt-1">Yatim & Dhuafa</p>
+      </div>
+
+      <!-- Khitan Internal -->
+      <div onclick="switchTab('khitan_internal')"
+        class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm hover:shadow-md transition cursor-pointer group">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-500 group-hover:text-indigo-700">🏥 Khitan Internal RS</span>
+          <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+        </div>
+        <div class="mt-2 flex items-baseline justify-between">
+          <span id="summaryKhitanInternal" class="text-2xl sm:text-3xl font-extrabold text-slate-900">--</span>
+          <span class="text-xs text-slate-400 font-medium">Internal</span>
+        </div>
+        <p class="text-[11px] text-slate-500 mt-1">Keluarga Karyawan RS</p>
+      </div>
+
+      <!-- Donor Darah -->
+      <div onclick="switchTab('donor')"
+        class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm hover:shadow-md transition cursor-pointer group">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-500 group-hover:text-red-700">🩸 Donor Darah PMI</span>
+          <span class="w-2 h-2 rounded-full bg-red-500"></span>
+        </div>
+        <div class="mt-2 flex items-baseline justify-between">
+          <span id="summaryDonor" class="text-2xl sm:text-3xl font-extrabold text-slate-900">--</span>
+          <span class="text-xs text-slate-400 font-medium">Tanpa Batas</span>
+        </div>
+        <p class="text-[11px] text-slate-500 mt-1">Aksi Kemanusiaan</p>
+      </div>
+    </div>
+
+    <!-- Data Panel Box -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden flex flex-col min-h-[500px]">
+
+      <!-- Toolbar: Tab Switcher & Search/Actions -->
+      <div class="px-6 py-4 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center gap-4">
+        <!-- Tabs -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+          <button id="tabKatarak" onclick="switchTab('katarak')"
+            class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-amber-600 text-white shadow-sm shrink-0">
+            <span>👁️</span> <span>Operasi Katarak</span>
+            <span id="badgeKatarak" class="ml-1 px-1.5 py-0.2 rounded-full bg-amber-800/60 text-[10px]">--</span>
+          </button>
+          <button id="tabKhitan" onclick="switchTab('khitan')"
+            class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 shrink-0">
+            <span>✂️</span> <span>Khitan Umum</span>
+            <span id="badgeKhitan" class="ml-1 px-1.5 py-0.2 rounded-full bg-slate-200 text-slate-700 text-[10px]">--</span>
+          </button>
+          <button id="tabKhitanInternal" onclick="switchTab('khitan_internal')"
+            class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 shrink-0">
+            <span>🏥</span> <span>Khitan Internal RS</span>
+            <span id="badgeKhitanInternal" class="ml-1 px-1.5 py-0.2 rounded-full bg-slate-200 text-slate-700 text-[10px]">--</span>
+          </button>
+          <button id="tabDonor" onclick="switchTab('donor')"
+            class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 shrink-0">
+            <span>🩸</span> <span>Donor Darah</span>
+            <span id="badgeDonor" class="ml-1 px-1.5 py-0.2 rounded-full bg-slate-200 text-slate-700 text-[10px]">--</span>
+          </button>
+        </div>
+
+        <!-- Search & Actions -->
+        <div class="flex items-center gap-2.5 ml-auto w-full sm:w-auto pt-2 sm:pt-0 sm:pl-5 sm:border-l sm:border-slate-300">
+          <div class="relative flex-grow sm:w-64">
+            <input type="text" id="searchInput" placeholder="Cari nama, alamat, no hp..."
+              class="w-full pl-8 pr-3 py-2 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rsBlue-500 bg-white shadow-sm" />
+            <span class="absolute left-2.5 top-2.5 text-slate-400 text-xs">🔍</span>
+          </div>
+          <button id="refreshBtn" onclick="manualRefresh()"
+            class="px-4 py-2 bg-rsBlue-600 hover:bg-rsBlue-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 active:scale-95 shrink-0 shadow-sm"
+            title="Refresh Data Live dari Google Sheet">
+            <span id="refreshIcon">🔄</span> <span>Sinkron</span>
+          </button>
+          <button id="exportBtn" onclick="exportToCsv()"
+            class="px-4 py-2 bg-slate-700 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 shadow-sm"
+            title="Unduh Data Format CSV">
+            <span>📥</span> <span>CSV</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Content Area (Table / Loading / Empty / Script Guide) -->
+      <div id="contentArea" class="flex-grow p-6 overflow-x-auto min-h-[420px] bg-slate-50/50">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Footer Info Bar -->
+      <div class="px-6 py-3.5 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-3">
+        <span id="statusText">Menghubungkan ke server...</span>
+        <span class="text-[11px] text-slate-400">Auto-update setiap 30 detik • Data langsung dari Google Sheets</span>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer Halaman -->
+  <footer class="bg-slate-900 text-slate-500 py-6 text-xs text-center border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4">
+      <p>© 2026 Panitia Milad Ke-36 RSU 'Aisyiyah Siti Fatimah Tulangan. Akses Terbatas Panitia.</p>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript -->
+  <script>
+    const KATARAK_API_URL = 'https://script.google.com/macros/s/AKfycbxKy98sviHk3XBC6UAOpfd_5s2Oam1SHcOgLA-GicIFUXRTqVFBpPKHlrEarJefMEgDOg/exec';
+    const KHITAN_API_URL = 'https://script.google.com/macros/s/AKfycbx6dr_c4IV0-C6wrD0LvdGAdAWKuMDiG4kZ49ctaDlOLnJZkd7mGG8ELxmZ98fJJuMdYw/exec';
+    const KHITAN_INTERNAL_API_URL = 'https://script.google.com/macros/s/AKfycbxjpeg43wfC0f-X_km0b2ilFKbywr1TT7I9656QYVAa_m9XxUSd66RWMVRsf-XdHdpz/exec';
+    const DONOR_API_URL = 'https://script.google.com/macros/s/AKfycbyFifrY4D9tIZhCrc4jsoUgonTKmblkaOLEme6SwKYP_puNVb_RWl8j36mDOakmA4ek/exec';
+
+    const tabConfig = {
+      katarak: { name: 'Operasi Katarak', url: KATARAK_API_URL, color: 'bg-amber-600', icon: '👁️' },
+      khitan: { name: 'Khitan Massal Umum', url: KHITAN_API_URL, color: 'bg-rsTeal-600', icon: '✂️' },
+      khitan_internal: { name: 'Khitan Massal Internal RS', url: KHITAN_INTERNAL_API_URL, color: 'bg-indigo-600', icon: '🏥' },
+      donor: { name: 'Donor Darah PMI', url: DONOR_API_URL, color: 'bg-red-600', icon: '🩸' }
+    };
+
+    let currentTab = 'katarak';
+    let adminCache = {
+      katarak: { rows: null, headers: null, registered: null, lastUpdated: null },
+      khitan: { rows: null, headers: null, registered: null, lastUpdated: null },
+      khitan_internal: { rows: null, headers: null, registered: null, lastUpdated: null },
+      donor: { rows: null, headers: null, registered: null, lastUpdated: null }
+    };
+
+    // Baca query param ?tab=xxx jika ada
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramTab = urlParams.get('tab');
+    if (paramTab && tabConfig[paramTab]) {
+      currentTab = paramTab;
+    }
+
+    // Pulihkan dari sessionStorage (instan 0 ms)
+    ['katarak', 'khitan', 'khitan_internal', 'donor'].forEach(tab => {
+      try {
+        const saved = sessionStorage.getItem('rsasf_admin_' + tab);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed && typeof parsed.registered !== 'undefined') {
+            parsed.lastUpdated = parsed.lastUpdated ? new Date(parsed.lastUpdated) : new Date();
+            adminCache[tab] = parsed;
+            updateTabBadges(tab, parsed.registered);
+          }
+        }
+      } catch (e) {}
+    });
+
+    function updateTabBadges(tab, count) {
+      const badgeMap = {
+        katarak: document.getElementById('badgeKatarak'),
+        khitan: document.getElementById('badgeKhitan'),
+        khitan_internal: document.getElementById('badgeKhitanInternal'),
+        donor: document.getElementById('badgeDonor')
+      };
+      const summaryMap = {
+        katarak: document.getElementById('summaryKatarak'),
+        khitan: document.getElementById('summaryKhitan'),
+        khitan_internal: document.getElementById('summaryKhitanInternal'),
+        donor: document.getElementById('summaryDonor')
+      };
+      if (badgeMap[tab]) badgeMap[tab].textContent = count;
+      if (summaryMap[tab]) summaryMap[tab].textContent = count;
+    }
+
+    function switchTab(newTab) {
+      if (!tabConfig[newTab]) return;
+      currentTab = newTab;
+      updateTabButtons();
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) searchInput.value = '';
+
+      // Tampilkan cache dulu (instan)
+      if (adminCache[newTab].lastUpdated) {
+        renderTable(adminCache[newTab]);
+      } else {
+        showLoadingState();
+      }
+
+      // Revalidate silent di background
+      silentRevalidate(newTab);
+    }
+
+    function updateTabButtons() {
+      const inactiveClass = 'px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 shrink-0';
+      const tabs = ['katarak', 'khitan', 'khitan_internal', 'donor'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('tab' + capitalize(t));
+        if (btn) btn.className = inactiveClass;
+      });
+
+      const activeBtn = document.getElementById('tab' + capitalize(currentTab));
+      if (activeBtn) {
+        activeBtn.className = `px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${tabConfig[currentTab].color} text-white shadow-sm shrink-0`;
+      }
+    }
+
+    function capitalize(str) {
+      if (str === 'khitan_internal') return 'KhitanInternal';
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    function showLoadingState() {
+      const content = document.getElementById('contentArea');
+      const statusText = document.getElementById('statusText');
+      const cfg = tabConfig[currentTab];
+
+      content.innerHTML = `
+        <div class="flex flex-col items-center justify-center py-20 text-slate-500">
+          <div class="w-10 h-10 border-4 border-rsBlue-200 border-t-rsBlue-600 rounded-full animate-spin mb-3"></div>
+          <p class="text-xs font-bold text-slate-700">Mengambil data live dari Google Sheet ${cfg.name}...</p>
+          <p class="text-[11px] text-slate-400 mt-1">Menghubungi endpoint Google Apps Script</p>
+        </div>
+      `;
+      if (statusText) statusText.textContent = `Menghubungkan ke server ${cfg.name}...`;
+    }
+
+    let isRevalidating = false;
+    async function silentRevalidate(tab) {
+      const cfg = tabConfig[tab];
+      if (!cfg || !cfg.url) return;
+
+      const refreshIcon = document.getElementById('refreshIcon');
+      if (refreshIcon) refreshIcon.classList.add('animate-spin');
+
+      try {
+        const fetchUrl = cfg.url + (cfg.url.includes('?') ? '&' : '?') + 'action=detail&_t=' + Date.now();
+        const res = await fetch(fetchUrl);
+        const json = await res.json();
+
+        const registeredCount = json.registered || (Array.isArray(json.rows) ? json.rows.length : (Array.isArray(json.data) ? json.data.length : 0));
+        updateTabBadges(tab, registeredCount);
+
+        const rows = json.rows || json.data;
+        const headers = json.headers || (rows && rows.length > 0 ? Object.keys(rows[0]) : []);
+
+        adminCache[tab] = {
+          rows: rows || null,
+          headers: headers,
+          registered: registeredCount,
+          lastUpdated: new Date()
+        };
+
+        try {
+          sessionStorage.setItem('rsasf_admin_' + tab, JSON.stringify(adminCache[tab]));
+        } catch(e) {}
+
+        if (currentTab === tab) {
+          renderTable(adminCache[tab]);
+        }
+      } catch (err) {
+        console.warn('Revalidation error for ' + tab + ':', err);
+        if (currentTab === tab && !adminCache[tab].lastUpdated) {
+          renderErrorState(err.message, tab);
+        }
+      } finally {
+        if (refreshIcon) refreshIcon.classList.remove('animate-spin');
+      }
+    }
+
+    function renderTable(cacheData) {
+      const content = document.getElementById('contentArea');
+      const statusText = document.getElementById('statusText');
+      const nowStr = cacheData.lastUpdated ? cacheData.lastUpdated.toLocaleTimeString('id-ID') : '-';
+      if (statusText) {
+        statusText.textContent = `Tersinkronisasi pukul ${nowStr} • Total Terdata: ${cacheData.registered} Pendaftar (${tabConfig[currentTab].name})`;
+      }
+
+      // Kasus spreadsheet baru mengembalikan { registered: X } tanpa rows:
+      if (!cacheData.rows || cacheData.rows.length === 0) {
+        content.innerHTML = `
+          <div class="space-y-4 max-w-4xl mx-auto my-4">
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="flex items-center gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-3xl font-bold">
+                  📊
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-base">Endpoint Google Apps Script Berhasil Terhubung</h4>
+                  <p class="text-xs text-slate-500 mt-0.5">Membaca hitungan live data dari spreadsheet kegiatan <strong>${tabConfig[currentTab].name}</strong>.</p>
+                </div>
+              </div>
+              <div class="text-center sm:text-right bg-slate-50 px-5 py-3 rounded-2xl border border-slate-200">
+                <span class="text-[11px] text-slate-400 block font-medium">Total Pendaftar di Sheet</span>
+                <span class="text-3xl font-extrabold text-rsBlue-600">${cacheData.registered} Orang</span>
+              </div>
+            </div>
+
+            <div class="bg-blue-50/70 border border-blue-200 rounded-2xl p-6 text-slate-700 text-xs">
+              <div class="flex items-center gap-2 mb-2 text-rsBlue-700 font-bold text-sm">
+                <span>💡</span> <span>Ingin Menampilkan Rincian Baris Kolom Pasien di Tabel?</span>
+              </div>
+              <p class="text-slate-600 leading-relaxed mb-3">
+                Endpoint saat ini baru mengirimkan ringkasan jumlah (${cacheData.registered} baris). 
+                Agar nama, telepon, dan alamat langsung tampil di tabel panel ini, silakan pastikan kode Apps Script di spreadsheet Anda sudah mendukung parameter <code class="font-mono bg-white px-1 py-0.5 rounded text-rsBlue-700">action=detail</code>.
+              </p>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      renderFilteredRows(cacheData.rows, cacheData.headers);
+    }
+
+    function renderFilteredRows(rows, headers) {
+      const content = document.getElementById('contentArea');
+      const searchInput = document.getElementById('searchInput');
+      const keyword = (searchInput ? searchInput.value : '').toLowerCase().trim();
+
+      const filtered = keyword ? rows.filter(r => {
+        return Object.values(r).some(val => String(val).toLowerCase().includes(keyword));
+      }) : rows;
+
+      if (filtered.length === 0) {
+        content.innerHTML = `
+          <div class="bg-white rounded-2xl border border-slate-200 p-12 text-center text-slate-500 max-w-md mx-auto my-8">
+            <span class="text-4xl block mb-2">🔍</span>
+            <p class="font-bold text-sm text-slate-800">Tidak ada data yang cocok dengan pencarian "${keyword}"</p>
+            <p class="text-xs text-slate-400 mt-1">Coba gunakan kata kunci nama atau nomor HP lainnya.</p>
+          </div>
+        `;
+        return;
+      }
+
+      let tableHtml = `
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <div class="p-3.5 bg-slate-50 border-b border-slate-200 flex flex-wrap justify-between items-center text-xs text-slate-600 gap-2">
+            <span>Menampilkan <strong>${filtered.length}</strong> dari <strong>${rows.length}</strong> data pendaftar</span>
+            ${keyword ? `<span class="text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Filter: "${keyword}"</span>` : ''}
+          </div>
+          <div class="overflow-x-auto max-h-[65vh]">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead class="bg-slate-100 text-slate-700 uppercase text-[10px] tracking-wider sticky top-0 border-b border-slate-200 shadow-sm">
+                <tr>
+                  <th class="py-3 px-3.5 font-bold border-r border-slate-200 text-center w-12 bg-slate-100">No</th>
+                  ${headers.map(h => `<th class="py-3 px-3.5 font-bold border-r border-slate-200 whitespace-nowrap bg-slate-100">${h}</th>`).join('')}
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                ${filtered.map((row, idx) => `
+                  <tr class="hover:bg-slate-50/80 transition">
+                    <td class="py-2.5 px-3.5 text-center font-bold text-slate-400 bg-slate-50/50 border-r border-slate-100">${idx + 1}</td>
+                    ${headers.map(h => `<td class="py-2.5 px-3.5 border-r border-slate-100 whitespace-nowrap text-slate-800">${row[h] || '-'}</td>`).join('')}
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+      content.innerHTML = tableHtml;
+    }
+
+    function renderErrorState(errMsg, tab) {
+      const content = document.getElementById('contentArea');
+      content.innerHTML = `
+        <div class="bg-red-50 border border-red-200 rounded-2xl p-8 text-center text-red-700 max-w-lg mx-auto my-8">
+          <span class="text-4xl block mb-2">⚠️</span>
+          <h4 class="font-bold text-sm text-red-800">Gagal Mengambil Data dari Google Sheet</h4>
+          <p class="text-xs text-red-600 mt-1">Terjadi kendala jaringan atau endpoint Apps Script belum merespons.</p>
+          <p class="text-[11px] text-slate-600 mt-2 font-mono bg-white p-2 rounded border border-red-100 inline-block">${errMsg}</p>
+          <div class="mt-4">
+            <button onclick="silentRevalidate('${tab}')" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-bold transition shadow-sm">
+              Coba Lagi 🔄
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function manualRefresh() {
+      showLoadingState();
+      silentRevalidate(currentTab);
+    }
+
+    function exportToCsv() {
+      const cacheData = adminCache[currentTab];
+      if (!cacheData || !cacheData.rows || cacheData.rows.length === 0) {
+        alert('Belum ada data baris yang dapat diekspor untuk kategori ' + tabConfig[currentTab].name);
+        return;
+      }
+      const headers = cacheData.headers;
+      const rows = cacheData.rows;
+      let csvContent = '\uFEFF'; // BOM UTF-8
+      csvContent += headers.map(h => `"${String(h).replace(/"/g, '""')}"`).join(',') + '\r\n';
+      rows.forEach(r => {
+        csvContent += headers.map(h => `"${String(r[h] || '').replace(/"/g, '""')}"`).join(',') + '\r\n';
+      });
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      const dateStr = new Date().toISOString().slice(0, 10);
+      link.setAttribute('download', `Rekap_${currentTab}_Milad36_${dateStr}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Event listener search live
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        const cacheData = adminCache[currentTab];
+        if (cacheData && cacheData.rows) {
+          renderFilteredRows(cacheData.rows, cacheData.headers);
+        }
+      });
+    }
+
+    // Preload semua tab
+    async function preloadAll() {
+      const tabs = ['katarak', 'khitan', 'khitan_internal', 'donor'];
+      for (const t of tabs) {
+        silentRevalidate(t);
+      }
+    }
+
+    // Inisialisasi awal
+    updateTabButtons();
+    if (adminCache[currentTab].lastUpdated) {
+      renderTable(adminCache[currentTab]);
+    } else {
+      showLoadingState();
+    }
+    preloadAll();
+
+    // Auto-refresh setiap 30 detik
+    setInterval(() => {
+      silentRevalidate(currentTab);
+    }, 30000);
+  </script>
+</body>
+</html>
+
